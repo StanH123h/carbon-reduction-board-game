@@ -1,18 +1,14 @@
 import * as React from 'react';
+import {useMemo, useState} from 'react';
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import {ProgressTab} from "./ProgressTab/ProgressTab";
-import {
-    ButtonGroup,
-    List,
-    ListItem,
-} from "@mui/material";
+import {ButtonGroup, List, ListItem,} from "@mui/material";
 import CONST from "../../data/constants.json";
 import {TopTitleBar} from "./TopTitleBar/TopTitleBar";
 import "./MainGamePage.scss"
 import Button from "@mui/material/Button";
-import {useMemo, useState} from "react";
 import {Countdown} from "./Countdown/Countdown";
 import {PopUp} from "./PopUp/PopUp";
 import {endRound} from "../commonFuncs";
@@ -57,7 +53,7 @@ export const MainGamePage = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [popUpCorpName, setPopUpCorpName] = useState(null)
     const [popUpEventId, setPopUpEventId] = useState(null)
-    const [carbonAmount, setCarbonAmount] = useState(JSON.parse(localStorage.getItem("carbon_amount_no_longer_increases"))?JSON.parse(localStorage.getItem("carbon_after_func13")):JSON.parse(localStorage.getItem("carbon_amount")))
+    const [carbonAmount, setCarbonAmount] = useState(JSON.parse(localStorage.getItem("carbon_amount_no_longer_increases")) ? JSON.parse(localStorage.getItem("carbon_after_func13")) : JSON.parse(localStorage.getItem("carbon_amount")))
     const [socialLvl, setSocialLvl] = useState(JSON.parse(localStorage.getItem("social_lvl")))
     const navigate = useNavigate();
     const endSmallRound = () => {
@@ -121,14 +117,11 @@ export const MainGamePage = () => {
         )
     }
     const PersonalInfo = ({role}) => {
-        if (role === "GOVERNMENT") {
-            return (
-                <>
-                    已完成项目: <strong>{governmentInfo.finished_projects}</strong>
-                </>
-            )
-        } else if (role === "ENTREPRENEUR") {
-            return (
+        return (
+            <>
+                <strong>政府</strong><br/>
+                已完成项目: <strong>{governmentInfo.finished_projects}</strong>
+
                 <div style={{display: "flex", justifyContent: "space-evenly"}}>
                     <div>
                         <h4>企业1</h4><br/>
@@ -139,9 +132,8 @@ export const MainGamePage = () => {
                         资金: <strong>{entrepreneurInfo2.money}</strong>
                     </div>
                 </div>
-            )
-        } else {
-            return (
+
+
                 <div style={{display: "flex", justifyContent: "space-evenly"}}>
                     <div>
                         <h4>公民1</h4><br/>
@@ -162,8 +154,8 @@ export const MainGamePage = () => {
                         幸福值: <strong>{civilInfo3.utility}</strong>
                     </div>
                 </div>
-            )
-        }
+            </>
+        )
     }
 
     const operatePersonalInfo = (identity, data) => {
