@@ -1,0 +1,86 @@
+{
+  "Func1":{
+    "description":"后续项目「人工智能」编号F05,「智能城市」编号F06完成后带来的碳排减半。",
+    "displayable": true
+  },
+  "Func2":{
+    "description":"「碳捕获与封存项目」编号X06的项目所需打工份数减少至4份",
+    "displayable": true
+  },
+  "Func3":{
+    "description":"「能源转型」编号X10的项目所需打工份数减少至5份",
+    "displayable": true
+  },
+  "Func4":{
+    "description":"政府玩家可以看到每个企业玩家分别产生的碳排放量",
+    "displayable": true
+  },
+  "Func5":{
+    "description":"碳排-7点",
+    "displayable": false
+  },
+  "Func6":{
+    "description":"如果灾难「洪灾」编号Z05发生,则不会带来任何影响",
+    "displayable": true
+  },
+  "Func7":{
+    "description":"企业所有产品生产成本减少50块钱",
+    "displayable": true
+  },
+  "Func8":{
+    "description":"幸福+500点;碳排-5点",
+    "displayable": false
+  },
+  "Func9":{
+    "description":"碳排-10点",
+    "displayable": false
+  },
+  "Func10":{
+    "description":"若灾难「旱灾」编号Z06发生所有影响数值减半",
+    "displayable": true
+  },
+  "Func11":{
+    "description":"碳排-10点;幸福+100点",
+    "displayable": false
+  },
+  "Func12":{
+    "description":"之前累计产生的碳排放减半",
+    "displayable": false
+  },
+  "Func13":{
+    "description":"所有行为不再增加碳排",
+    "displayable": true
+  },
+  "Func14":{
+    "description":"每次劳动对健康值的影响减20%",
+    "displayable": true
+  },
+  "Func15":{
+    "description":"将碳排+2点;普通人幸福值+70点",
+    "displayable": false
+  },
+  "Func16":{
+    "description":"玩家可以知道这一轮有可能发生的灾难（可以看到当前碳排量对应的灾难等级的所有灾难的名字）",
+    "displayable": true
+  },
+  "Func17":{
+    "description":"幸福值+300点;健康值+1点;碳排+4点",
+    "displayable": false
+  },
+  "Func18":{
+    "description":"幸福+100点;碳排+13",
+    "displayable": false
+  },
+  "Func19":{
+    "description":"幸福+200点;碳排+16",
+    "displayable": false
+  },
+  "Func20":{
+    "description":"幸福+500点;碳排+16",
+    "displayable": false
+  },
+  "Func21":{
+    "description":"达成项目「移民火星」编号X13所需打工份数减半",
+    "displayable": true
+  }
+}

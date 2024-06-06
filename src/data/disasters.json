@@ -1,0 +1,79 @@
+{
+  "Z01": {
+    "civil_money": -3000,
+    "business_money": -4000,
+    "health": -13,
+    "utility": -350,
+    "name": "磁暴"
+  },
+  "Z02": {
+    "civil_money": -3000,
+    "business_money": -4000,
+    "health": -15,
+    "utility": -350,
+    "name": "极寒"
+  },
+  "Z03": {
+    "civil_money": -3500,
+    "business_money": -4700,
+    "health": -16,
+    "utility": -260,
+    "name": "海藻过度生长"
+  },
+  "Z04": {
+    "civil_money": -4500,
+    "business_money": -6000,
+    "health": -24,
+    "utility": -480,
+    "name": "森林火灾"
+  },
+  "Z05": {
+    "civil_money": -6000,
+    "business_money": -7500,
+    "health": -30,
+    "utility": -700,
+    "name": "洪灾"
+  },
+  "Z06": {
+    "civil_money": -6000,
+    "business_money": -7500,
+    "health": -27,
+    "utility": -720,
+    "name": "旱灾"
+  },
+  "Z07": {
+    "civil_money": -7500,
+    "business_money": -9000,
+    "health": -27,
+    "utility": -600,
+    "name": "塌方"
+  },
+  "Z08": {
+    "civil_money": -8000,
+    "business_money": -10000,
+    "health": -35,
+    "utility": -900,
+    "name" : "风暴"
+  },
+  "Z09": {
+    "civil_money": -9000,
+    "business_money": -12000,
+    "health": -40,
+    "utility": -1200,
+    "name": "地震"
+  },
+  "Z10": {
+    "civil_money": -13000,
+    "business_money": -15000,
+    "health": -50,
+    "utility": -1500,
+    "name": "全球疫情"
+  },
+  "ZZZ": {
+    "civil_money": -99999,
+    "business_money": -99999,
+    "health": -99999,
+    "utility": -99999,
+    "name": "生态崩溃"
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "X01":{
+    "name": "节能编程",
+    "social_lvl": 1,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 50000,
+    "labor_required": 7,
+    "function":"Func1",
+    "isGreen": true
+  },
+  "X02":{
+    "name": "巨型马尾藻养殖场",
+    "social_lvl": 1,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 50000,
+    "labor_required": 7,
+    "function":"Func2",
+    "isGreen": true
+  },
+  "X03":{
+    "name": "生物燃料",
+    "social_lvl": 1,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 30000,
+    "last_payment_to_business": 30000,
+    "labor_required": 4,
+    "function":"Func3",
+    "isGreen": true
+  },
+  "X04":{
+    "name": "温室气体排放遥感",
+    "social_lvl": 2,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 40000,
+    "labor_required": 6,
+    "function":"Func4",
+    "isGreen": true
+  },
+  "X05":{
+    "name": "碳捕获与封存",
+    "social_lvl": 2,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 80000,
+    "last_payment_to_business": 80000,
+    "labor_required": 11,
+    "function":"Func5",
+    "isGreen": true
+  },
+  "X06":{
+    "name": "海绵城市",
+    "social_lvl": 2,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 60000,
+    "labor_required": 9,
+    "function":"Func6",
+    "isGreen": true
+  },
+  "X07":{
+    "name": "循环经济",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 60000,
+    "last_payment_to_business": 50000,
+    "labor_required": 8,
+    "function":"Func7",
+    "isGreen": true
+  },
+  "X08":{
+    "name": "超高效住宅",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 60000,
+    "labor_required": 9,
+    "function":"Func8",
+    "isGreen": true
+  },
+  "X09":{
+    "name": "能源转型",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 50000,
+    "labor_required": 7,
+    "function":"Func4",
+    "isGreen": true
+  },
+  "X10":{
+    "name": "垂直农业",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 70000,
+    "labor_required": 10,
+    "function":"Func10",
+    "isGreen": true
+  },
+  "X11":{
+    "name": "核能发电",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 110000,
+    "last_payment_to_business": 100000,
+    "labor_required": 15,
+    "function":"Func11",
+    "isGreen": true
+  },
+  "X12":{
+    "name": "碳达峰",
+    "social_lvl": 4,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 50000,
+    "labor_required": 7,
+    "function":"Func12",
+    "isGreen": true
+  },
+  "X13":{
+    "name": "移民火星",
+    "social_lvl": 4,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 70000,
+    "labor_required": 10,
+    "function":"Func13",
+    "isGreen": true
+  },
+  "F01":{
+    "name": "工作保障",
+    "social_lvl": 1,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 60000,
+    "labor_required": 9,
+    "function":"Func14",
+    "isGreen": false
+  },
+  "F02":{
+    "name": "农村电气化",
+    "social_lvl": 1,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 50000,
+    "labor_required": 1,
+    "function":"Func15",
+    "isGreen": false
+  },
+  "F03":{
+    "name": "天气预报",
+    "social_lvl": 2,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 50000,
+    "last_payment_to_business": 40000,
+    "labor_required": 6,
+    "function":"Func16",
+    "isGreen": false
+  },
+  "F04":{
+    "name": "自动化农业",
+    "social_lvl": 2,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 80000,
+    "last_payment_to_business": 80000,
+    "labor_required": 11,
+    "function":"Func17",
+    "isGreen": false
+  },
+  "F05":{
+    "name": "高铁铁路网络",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 70000,
+    "last_payment_to_business": 60000,
+    "labor_required": 9,
+    "function":"Func18",
+    "isGreen": false
+  },
+  "F06":{
+    "name": "人工智能",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 100000,
+    "last_payment_to_business": 90000,
+    "labor_required": 13,
+    "function":"Func19",
+    "isGreen": false
+  },
+  "F07":{
+    "name": "智能城市",
+    "social_lvl": 3,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 120000,
+    "last_payment_to_business": 110000,
+    "labor_required": 16,
+    "function":"Func20",
+    "isGreen": false
+  },
+  "F08":{
+    "name": "太空电梯",
+    "social_lvl": 4,
+    "wage_per_worker": 0.34,
+    "first_payment_to_business": 30000,
+    "last_payment_to_business": 30000,
+    "labor_required": 4,
+    "function":"Func21",
+    "isGreen": false
+  }
+
+}

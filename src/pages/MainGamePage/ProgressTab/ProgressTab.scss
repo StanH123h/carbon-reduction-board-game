@@ -1,0 +1,22 @@
+.progress-tab{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  font-size: large;
+  font-weight: bolder;
+  gap: 3%;
+  .tab{
+    min-width:75%;
+    height: 10px;
+    border-radius: 5px;
+  }
+  .name{
+    font-size: medium ;
+    min-width: 12.5%;
+    text-align: center;
+  }
+  .progress{
+    min-width: 2%;
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "L01": {
+    "name": "有机棉衣",
+    "description": "有机棉使用很少的农药，对土壤影响较小。有机棉比传统棉少消耗62%的能源和88%的水，使用后也更容易降解。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": true,
+    "utility": 9,
+    "isGreen": true
+  },
+  "L02": {
+    "name": "汉麻衣",
+    "description": "汉麻纤维可以抵御病虫害，不需要使用农药。汉麻同有机棉，已成为全球公认的生态环保和稀有珍贵资源。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L03": {
+    "name": "手帕",
+    "description": "用再生纸做成的礼物包装、吸管、厕纸，减少了对原始木浆的需求，节约了自然资源，而且还有一种朴实无华的美丽。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L04": {
+    "name": "可堆肥手机壳",
+    "description": "由桔梗回收纸做的手机壳更容易降解",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L05": {
+    "name": "钢吸管",
+    "description": "可循环使用的钢制吸管是替代一次性塑料吸管的优秀选择。塑料吸管降解长达500年，坚持使用钢吸管减少浪费。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L06": {
+    "name": "竹牙刷",
+    "description": "传统的塑料牙刷造成了塑料垃圾。竹牙刷是可生物降解的，由可再生资源制成。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L07": {
+    "name": "气泡水笼头",
+    "description": "气泡水龙头通过在水流中注入气泡来提供相对较高的压力，同时减少用水量，节省水费。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L08": {
+    "name": "丝瓜洗碗布",
+    "description": "由老丝瓜晒到只剩纤维制成，纤维不粘油，非常容易清洁。它干燥时是硬的，但在水中浸泡时是软的。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L09": {
+    "name": "再生纸",
+    "description": "用再生纸做成的礼物包装、吸管、厕纸，减少了对原始木浆的需求，节约了自然资源，而且还有一种朴实无华的美丽。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": false,
+    "utility": 16,
+    "isGreen": true
+  },
+  "L10": {
+    "name": "Low_e玻璃（低辐射玻璃）",
+    "description": "比普通玻璃多了一层膜，让建筑空间更能控制热量、减少制冷成本、控制阳光照射节省能源。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L11": {
+    "name": "竹子单车",
+    "description": "竹子强度高、生长速度快，比金属单车更容易在丢弃后降解。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L12": {
+    "name": "纸制罐装水",
+    "description": "用再生纸和薄锡纸制成的罐装水，全身没有一粒塑料。使用后可以完全分解、被回收。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 10,
+    "isGreen": true
+  },
+  "L13": {
+    "name": "茶籽粉",
+    "description": "茶籽粉是一种天然的洗洁粉，中国南方自古以来就用茶籽粉洗碗、洗澡、洗衣服。相对于化学合成的洗洁精对身体更好。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": false,
+    "utility": 16,
+    "isGreen": true
+  },
+  "L14": {
+    "name": "野生鱼虾",
+    "description": "野生打捞的鱼虾相对于养殖的来说对环境的污染更小，对身体也更健康。",
+    "price": 1200,
+    "producing_cost": 400,
+    "re_sellable": false,
+    "utility": 20,
+    "isGreen": true
+  },
+  "L15": {
+    "name": "LED灯泡",
+    "description": "LED灯不会排放有害气体且寿命更长更亮，能够帮你节省电费。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": true,
+    "utility": 8,
+    "isGreen": true
+  },
+  "P01": {
+    "name": "白炽灯泡",
+    "description": "与LED或CFL灯泡相比，传统白炽灯泡能效低，寿命短。选择节能照明可以减少对环境的影响。",
+    "price": 750,
+    "producing_cost": 250,
+    "re_sellable": true,
+    "utility": 10,
+    "isGreen": false
+  },
+  "P02": {
+    "name": "养殖鱼虾",
+    "description": "虾的饲料中含有尿素、磷酸钙、化学肥料等物质并会对水质造成影响。如果管理不当会导致病害和其他污染。",
+    "price": 1200,
+    "producing_cost": 400,
+    "re_sellable": false,
+    "utility": 32,
+    "isGreen": false
+  },
+  "P03": {
+    "name": "涤纶衣服",
+    "description": "涤纶是由化石燃料合成的。每生产1吨的涤纶需要消耗掉3吨的原油。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": true,
+    "utility": 12,
+    "isGreen": false
+  },
+  "P04": {
+    "name": "牙膏",
+    "description": "牙膏中含有微小的无法被降解的塑料颗粒。在美国，预计有八百万这种小颗粒污染水源。",
+    "price": 750,
+    "producing_cost": 250,
+    "re_sellable": false,
+    "utility": 20,
+    "isGreen": false
+  },
+  "P05": {
+    "name": "护手霜",
+    "description": "护手霜中的化学物质占污水和废水处理污泥中所有药物的60%，会污染湖泊和河流，危害水生生物。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": false,
+    "utility": 24,
+    "isGreen": false
+  },
+  "P06": {
+    "name": "喷墨打印机墨盒",
+    "description": "喷墨打印机使用寿命短，墨盒容易干枯导致喷孔堵塞。这会增加使用成本并对环境造成极大污染。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": true,
+    "utility": 12,
+    "isGreen": false
+  },
+  "P07": {
+    "name": "防晒霜",
+    "description": "防晒霜中常见的阻挡紫外线成分在与海底生物相互作用时会产生的化学物质会导致珊瑚白化。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": false,
+    "utility": 24,
+    "isGreen": false
+  },
+  "P08": {
+    "name": "一次性相机",
+    "description": "一次性相机造成了电子垃圾，它们的便利带来了环境后果。选择数码相机或可重复使用的胶片相机是一个更可持续的选择。",
+    "price": 1050,
+    "producing_cost": 350,
+    "re_sellable": false,
+    "utility": 28,
+    "isGreen": false
+  },
+  "P09": {
+    "name": "咖啡（产生咖啡渣）",
+    "description": "咖啡虽然好喝，但是其产生的大量的咖啡渣却非常难以降解，如果没有正确放入土壤中还容易腐蚀植物的根茎。",
+    "price": 900,
+    "producing_cost": 300,
+    "re_sellable": false,
+    "utility": 20,
+    "isGreen": false
+  },
+  "P10": {
+    "name": "塑料牙刷（和竹牙刷对应）",
+    "description": "塑料难以降解，不如使用价格差不多的竹牙刷。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 15,
+    "isGreen": false
+  },
+  "P11": {
+    "name": "塑料吸管",
+    "description": "一次吸管使用5分钟，降解500年。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 15,
+    "isGreen": false
+  },
+  "P12": {
+    "name": "肥皂",
+    "description": "肥皂里的成分很多是化学物质，容易对环境产生污染。",
+    "price": 750,
+    "producing_cost": 250,
+    "re_sellable": false,
+    "utility": 20,
+    "isGreen": false
+  },
+  "P13": {
+    "name": "一次性矿泉水",
+    "description": "塑料矿泉水瓶使用一次降解450年。",
+    "price": 600,
+    "producing_cost": 200,
+    "re_sellable": false,
+    "utility": 15,
+    "isGreen": false
+  }
+}

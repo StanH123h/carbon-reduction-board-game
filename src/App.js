@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { StartingPage } from "./pages/StartingPage/StartingPage";
+import {
+  BrowserRouter as Router,
+  Routes
+} from 'react-router-dom';
+import createRoutes from "./route/Route";
+import {MainGamePage} from "./pages/MainGamePage/MainGamePage";
+import {TransitionPage} from "./pages/TransitionPage/TransitionPage";
+import {GameOverPage} from "./pages/GameOverPage/GameOverPage";
 
 function App() {
+  const routesConfig = [
+    { path: '/', component: <StartingPage/>,index:0 },
+      {path: '/main',component: <MainGamePage/>,index:1},
+      {path:'/transition',component: <TransitionPage/>,index:2},
+      {path: '/gameover',component: <GameOverPage/>,index:3}
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Routes>
+          {createRoutes(routesConfig)}
+        </Routes>
+      </Router>
   );
 }
 

@@ -1,0 +1,20 @@
+.countdown{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  width: 7%;
+  .content{
+    background-color: rgba(0,0,0,0.35);
+    border-radius:0 0 0 30px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: x-large;
+  }
+  .timer-gif{
+    max-width: 43%;
+  }
+}

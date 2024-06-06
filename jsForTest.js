@@ -1,0 +1,1 @@
+localStorage.setItem("progressList",["Comp A","Comp B"])

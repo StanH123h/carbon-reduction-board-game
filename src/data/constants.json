@@ -1,0 +1,17 @@
+{
+  "ROUND_STAGES": [
+    "public_spk",
+    "gov_act",
+    "ent_act",
+    "civil_act",
+    "stats_update",
+    "round_end"
+  ],
+  "ROLES":[
+    "NO ONE",
+    "GOVERNMENT",
+    "ENTREPRENEUR",
+    "CIVILIAN",
+    "NO ONE"
+  ]
+}

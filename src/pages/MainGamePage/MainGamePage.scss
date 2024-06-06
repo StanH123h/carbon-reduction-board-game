@@ -1,0 +1,68 @@
+.main-game-page{
+  .progress-list{
+    border-radius: 10px;
+  }
+  .first-row{
+    display: flex;
+    width: 100%;
+    .player-role{
+      box-sizing: border-box;
+      display: flex;
+      height:100%;
+      justify-content: center;
+      align-items: center;
+      font-size: large;
+      background-color: #9af3ef;
+      position: relative;
+    }
+  }
+  .second-row{
+    display: flex;
+    width: 100%;
+    .status-table{
+      box-sizing: content-box;
+      display: flex;
+      height: 100%;
+      .MuiGrid2-direction-xs-row{
+        height:50%;
+        *{
+          padding: 0;
+          height:100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      padding: 8px;
+    }
+  }
+  .third-row{
+    //.css-1hf7e6s-MuiPaper-root{
+    //  height:100%
+    //}
+    display: flex;
+    width: 100%;
+    height:100%
+  }
+  .private-player-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000000;
+    font-size: large;
+    font-weight: bolder;
+  }
+  .button-group{
+    display: inline;
+    height:50% !important;
+    *{
+      height:100% !important;
+    }
+  }
+  .player-grid{
+    position: relative;
+  }
+  .personal-info{
+    text-align: center;
+  }
+}

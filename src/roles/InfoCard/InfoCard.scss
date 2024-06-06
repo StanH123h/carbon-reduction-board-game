@@ -1,0 +1,10 @@
+.info-card{
+  max-width: 20%;
+  .info-img{
+    width:100%;
+  }
+  .info-actions{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
