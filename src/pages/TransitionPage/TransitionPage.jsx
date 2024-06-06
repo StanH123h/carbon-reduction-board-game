@@ -3,7 +3,6 @@ import {Countdown} from "../MainGamePage/Countdown/Countdown";
 import {useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
 import {endRound} from "../commonFuncs";
-import CONST from "../../data/constants.json";
 import {newBigRound} from "../initialSetups";
 import disasters from "../../data/disasters.json"
 import {Alert, Snackbar} from "@mui/material";
@@ -104,6 +103,7 @@ export const TransitionPage = () => {
         eventName, description, time
     } = JSON.parse(localStorage.getItem("trans_page_data")
     )
+    const disasterApplied = JSON.parse(localStorage.getItem("disaster_applied"))
     if (eventName === "灾难结算") {
         const carbon = localStorage.getItem("carbon_amount")
         disasterAlert = "本回合的灾难是"
@@ -111,27 +111,36 @@ export const TransitionPage = () => {
             disasterAlert = "很幸运，本回合并未发生灾难"
         } else if (carbon <= 75) {
             hasDisaster = true
-            let random = Math.ceil(Math.random() * 3)
-            let disaster = disasters["Z0" + random]
-            disasterAlert += disaster.name
-            applyDisaster(disaster)
+            if (!disasterApplied) {
+                localStorage.setItem("disaster_applied","true")
+                const random = Math.ceil(Math.random() * 3)
+                let disaster = disasters["Z0" + random]
+                disasterAlert += disaster.name
+                applyDisaster(disaster)
+            }
         } else if (carbon <= 85) {
             hasDisaster = true
-            let random = 3 + Math.ceil(Math.random() * 4)
-            let disaster = disasters["Z0" + random]
-            disasterAlert += disaster.name
-            applyDisaster(disaster)
+            if (!disasterApplied) {
+                localStorage.setItem("disaster_applied","true")
+                const random = 3 + Math.ceil(Math.random() * 4)
+                let disaster = disasters["Z0" + random]
+                disasterAlert += disaster.name
+                applyDisaster(disaster)
+            }
         } else if (carbon < 100) {
             hasDisaster = true
-            let random = 7 + Math.ceil(Math.random() * 3)
-            let disaster
-            if (random === 10) {
-                disaster = disasters["Z10"]
-            } else {
-                disaster = disasters["Z0" + random]
+            if (!disasterApplied) {
+                localStorage.setItem("disaster_applied","true")
+                const random = 7 + Math.ceil(Math.random() * 3)
+                let disaster
+                if (random === 10) {
+                    disaster = disasters["Z10"]
+                } else {
+                    disaster = disasters["Z0" + random]
+                }
+                disasterAlert += disaster.name
+                applyDisaster(disaster)
             }
-            disasterAlert += disaster.name
-            applyDisaster(disaster)
         } else {
             let disaster = disasters["ZZZ"]
             disasterAlert += disaster.name
@@ -161,6 +170,7 @@ export const TransitionPage = () => {
                     {alertMessage}
                 </Alert>
             </Snackbar>
+            {hasDisaster ? <BuyMedicine/> : <></>}
         </div>
     )
 }

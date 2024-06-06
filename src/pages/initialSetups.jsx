@@ -102,6 +102,8 @@ export const setUp = () => {
         "F07": false,
         "F08": false
     }))
+    localStorage.setItem("disaster_applied","false")//防止灾难重复减数值
+    localStorage.setItem("disaster","")//当前回合的灾难
 }
 
 export const newBigRound = () => {
@@ -122,8 +124,10 @@ export const newBigRound = () => {
         carbon -= 5
         localStorage.setItem("carbon_amount", JSON.stringify(carbon))
     }
+    localStorage.setItem("disaster","")//当前回合的灾难
     localStorage.setItem("big_round", JSON.stringify(bigRound + 1))
     localStorage.setItem("small_round", "0")
+    localStorage.setItem("disaster_applied","false")//防止灾难重复减数值
     localStorage.setItem("curr_round_stage", "public_spk")
     localStorage.setItem("role", "GOVERNMENT")
     localStorage.setItem("trans_page_data", JSON.stringify(
