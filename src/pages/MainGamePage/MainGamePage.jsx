@@ -116,45 +116,80 @@ export const MainGamePage = () => {
             }
         )
     }
-    const PersonalInfo = ({role}) => {
+    const PersonalInfo = () => {
         return (
-            <>
-                <strong>政府</strong><br/>
-                已完成项目: <strong>{governmentInfo.finished_projects}</strong>
+            <div style={{display: "flex", justifyContent: "space-around"}}>
+                <div className={"government-info"}>
+                    <h4>政府</h4><br/>
+                    已完成项目: <strong>{governmentInfo.finished_projects}</strong>
+                </div>
 
-                <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                    <div>
-                        <h4>企业1</h4><br/>
-                        资金: <strong>{entrepreneurInfo1.money}</strong>
-                    </div>
-                    <div>
-                        <h4>企业2</h4><br/>
-                        资金: <strong>{entrepreneurInfo2.money}</strong>
-                    </div>
+                <div className={"ent1-info"}>
+                    <h4>企业1</h4><br/>
+                    资金: <strong>{entrepreneurInfo1.money}</strong>
+                </div>
+                <div className={"ent2-info"}>
+                    <h4>企业2</h4><br/>
+                    资金: <strong>{entrepreneurInfo2.money}</strong>
                 </div>
 
 
-                <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                    <div>
-                        <h4>公民1</h4><br/>
-                        资金: <strong>{civilInfo1.money}</strong><br/>
-                        健康值: <strong>{civilInfo1.health}</strong><br/>
-                        幸福值: <strong>{civilInfo1.utility}</strong>
-                    </div>
-                    <div>
-                        <h4>公民2</h4><br/>
-                        资金: <strong>{civilInfo2.money}</strong><br/>
-                        健康值: <strong>{civilInfo2.health}</strong><br/>
-                        幸福值: <strong>{civilInfo2.utility}</strong>
-                    </div>
-                    <div>
-                        <h4>公民3</h4><br/>
-                        资金: <strong>{civilInfo3.money}</strong><br/>
-                        健康值: <strong>{civilInfo3.health}</strong><br/>
-                        幸福值: <strong>{civilInfo3.utility}</strong>
+                <div className={"civil1-info"}>
+                    <h4>公民1</h4><br/>
+                    资金: <strong>{civilInfo1.money}</strong><br/>
+                    健康值: <strong>{civilInfo1.health}</strong><br/>
+                    幸福值: <strong>{civilInfo1.utility}</strong><br/>
+
+                    拥有的物品:
+                    <div className={"civil-owned-products"}>
+                        {civilInfo1.ownedProducts.map((prod) => {
+                            return (
+                                <>
+                                    <br/>
+                                    {prod.productName}:可提供{prod.utility}幸福值,还剩{prod.roundsLeft}轮
+                                </>
+                            )
+                        })}
                     </div>
                 </div>
-            </>
+                <div className={"civil2-info"}>
+                    <h4>公民2</h4><br/>
+                    资金: <strong>{civilInfo2.money}</strong><br/>
+                    健康值: <strong>{civilInfo2.health}</strong><br/>
+                    幸福值: <strong>{civilInfo2.utility}</strong><br/>
+
+                    拥有的物品:
+                    <div className={"civil-owned-products"}>
+                        {civilInfo2.ownedProducts.map((prod) => {
+                            return (
+                                <>
+                                    <br/>
+                                    {prod.productName}:可提供{prod.utility}幸福值,还剩{prod.roundsLeft}轮
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
+                <div className={"civil3-info"}>
+                    <h4>公民3</h4><br/>
+                    资金: <strong>{civilInfo3.money}</strong><br/>
+                    健康值: <strong>{civilInfo3.health}</strong><br/>
+                    幸福值: <strong>{civilInfo3.utility}</strong><br/>
+
+                    拥有的物品:
+                    <div className={"civil-owned-products"}>
+                        {civilInfo3.ownedProducts.map((prod) => {
+                            return (
+                                <>
+                                    <br/>
+                                    {prod.productName}:可提供{prod.utility}幸福值,还剩{prod.roundsLeft}轮
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+
         )
     }
 
@@ -274,7 +309,7 @@ export const MainGamePage = () => {
                 <Item>
                     <TopTitleBar title={"个人信息"}/>
                     <List className={"personal-info"} sx={{width: '100%', bgcolor: 'background.paper'}}>
-                        <PersonalInfo role={role}/>
+                        <PersonalInfo/>
                     </List>
                 </Item>
             </Grid>

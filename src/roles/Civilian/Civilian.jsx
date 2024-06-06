@@ -191,6 +191,7 @@ export const Civilian = ({civilianId}) => {
             setAlertMessage("购买成功")
             entrepreneur.money += product.price
             civil.ownedProducts.push({
+                productName:product.name,
                 productId: product_id,
                 roundsLeft: product.re_sellable + 1,
                 utility: product.utility

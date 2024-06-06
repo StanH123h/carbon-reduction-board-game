@@ -147,10 +147,10 @@ export const newBigRound = () => {
     civil1.ownedProducts = civil1.ownedProducts.filter((prod) => {
         return prod.roundsLeft >= 1;
     })
-    civil2.ownedProducts = civil1.ownedProducts.filter((prod) => {
+    civil2.ownedProducts = civil2.ownedProducts.filter((prod) => {
         return prod.roundsLeft >= 1;
     })
-    civil3.ownedProducts = civil1.ownedProducts.filter((prod) => {
+    civil3.ownedProducts = civil3.ownedProducts.filter((prod) => {
         return prod.roundsLeft >= 1;
     })
     if (currPolicy.id === "G04") {
