@@ -7,7 +7,7 @@ import {newBigRound} from "../initialSetups";
 import disasters from "../../data/disasters.json"
 import {Alert, Snackbar} from "@mui/material";
 import * as React from "react";
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 const applyDisaster = (disaster) => {
     const funcsActivated = JSON.parse(localStorage.getItem("functions_activated"))
@@ -51,6 +51,9 @@ export const TransitionPage = () => {
     const [snackbar, setSnackBar] = useState(false)
     const [severity, setSeverity] = useState("success")
     const [alertMessage, setAlertMessage] = useState("")
+    const civil1_buyed_medicine = useRef(false)
+    const civil2_buyed_medicine = useRef(false)
+    const civil3_buyed_medicine = useRef(false)
     const closeSnackBar = () => {
         setSnackBar(false)
     }
@@ -75,6 +78,13 @@ export const TransitionPage = () => {
                 setSnackBar(true)
                 return
             }
+            if (civilId === "civil_1") {
+                civil1_buyed_medicine.current = true
+            } else if (civilId === "civil_2") {
+                civil2_buyed_medicine.current = true
+            } else {
+                civil3_buyed_medicine.current = true
+            }
             civil.money -= 5000
             civil.health += 15
             setSeverity("success")
@@ -88,13 +98,13 @@ export const TransitionPage = () => {
                 <div className={"buy-medicine"}>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_1")
-                    }} variant={"contained"}>玩家1买药</Button>
+                    }} variant={"contained"} disabled={civil1_buyed_medicine.current}>玩家1买药</Button>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_2")
-                    }} variant={"contained"}>玩家2买药</Button>
+                    }} variant={"contained"} disabled={civil2_buyed_medicine.current}>玩家2买药</Button>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_3")
-                    }} variant={"contained"}>玩家3买药</Button>
+                    }} variant={"contained"} disabled={civil3_buyed_medicine.current}>玩家3买药</Button>
                 </div>
             </>
         )
@@ -104,6 +114,7 @@ export const TransitionPage = () => {
     } = JSON.parse(localStorage.getItem("trans_page_data")
     )
     const disasterApplied = JSON.parse(localStorage.getItem("disaster_applied"))
+    const currentDisaster = localStorage.getItem("disaster")
     if (eventName === "灾难结算") {
         const carbon = localStorage.getItem("carbon_amount")
         disasterAlert = "本回合的灾难是"
@@ -112,25 +123,27 @@ export const TransitionPage = () => {
         } else if (carbon <= 75) {
             hasDisaster = true
             if (!disasterApplied) {
-                localStorage.setItem("disaster_applied","true")
+                localStorage.setItem("disaster_applied", "true")
                 const random = Math.ceil(Math.random() * 3)
                 let disaster = disasters["Z0" + random]
+                localStorage.setItem("disaster", disaster.name)
                 disasterAlert += disaster.name
                 applyDisaster(disaster)
             }
         } else if (carbon <= 85) {
             hasDisaster = true
             if (!disasterApplied) {
-                localStorage.setItem("disaster_applied","true")
+                localStorage.setItem("disaster_applied", "true")
                 const random = 3 + Math.ceil(Math.random() * 4)
                 let disaster = disasters["Z0" + random]
+                localStorage.setItem("disaster", disaster.name)
                 disasterAlert += disaster.name
                 applyDisaster(disaster)
             }
         } else if (carbon < 100) {
             hasDisaster = true
             if (!disasterApplied) {
-                localStorage.setItem("disaster_applied","true")
+                localStorage.setItem("disaster_applied", "true")
                 const random = 7 + Math.ceil(Math.random() * 3)
                 let disaster
                 if (random === 10) {
@@ -139,11 +152,13 @@ export const TransitionPage = () => {
                     disaster = disasters["Z0" + random]
                 }
                 disasterAlert += disaster.name
+                localStorage.setItem("disaster", disaster.name)
                 applyDisaster(disaster)
             }
         } else {
             let disaster = disasters["ZZZ"]
             disasterAlert += disaster.name
+            localStorage.setItem("disaster", disaster.name)
             setTimeout(() => {
                 navigate('/gameover')
             }, 2000)
@@ -154,7 +169,7 @@ export const TransitionPage = () => {
             <h1>{eventName}</h1>
             <div>{description}</div>
             <br/>
-            <div>{disasterAlert}</div>
+            <div>{disasterAlert + currentDisaster}</div>
             <br/>
             <Countdown time={time}/>
             <Button onClick={() => {
