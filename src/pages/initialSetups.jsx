@@ -79,6 +79,29 @@ export const setUp = () => {
     localStorage.setItem("carbon_after_func13", "0")
     localStorage.setItem("carbon_recovery", "true")//碳排＞75后就不能自动恢复了
     localStorage.setItem("can_buy_medicine", "false")
+    localStorage.setItem("projects_started", JSON.stringify({//防止政府招标已经完成或正在进行的项目
+        "X01": false,
+        "X02": false,
+        "X03": false,
+        "X04": false,
+        "X05": false,
+        "X06": false,
+        "X07": false,
+        "X08": false,
+        "X09": false,
+        "X10": false,
+        "X11": false,
+        "X12": false,
+        "X13": false,
+        "F01": false,
+        "F02": false,
+        "F03": false,
+        "F04": false,
+        "F05": false,
+        "F06": false,
+        "F07": false,
+        "F08": false
+    }))
 }
 
 export const newBigRound = () => {
