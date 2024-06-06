@@ -5,8 +5,11 @@ import {InfoCard} from "../InfoCard/InfoCard";
 import {Alert, Snackbar} from "@mui/material";
 import functions from "../../data/project_functions.json"
 import {
-    TerminateProgressContext, UpdateBuffsContext, UpdateCarbonEmissionContext,
-    UpdatePersonalInfoContext, UpdateProductListContext,
+    TerminateProgressContext,
+    UpdateBuffsContext,
+    UpdateCarbonEmissionContext,
+    UpdatePersonalInfoContext,
+    UpdateProductListContext,
     UpdateProgressListContext
 } from "../../pages/MainGamePage/MainGamePage";
 
@@ -167,7 +170,7 @@ export const Civilian = ({civilianId}) => {
         let carbon = JSON.parse(localStorage.getItem("carbon_amount"))
         let productList = JSON.parse(localStorage.getItem("product_list"))
         let product = database[product_id]
-        let funcsActivated=JSON.parse(localStorage.getItem("functions_activated"))
+        let funcsActivated = JSON.parse(localStorage.getItem("functions_activated"))
         if (!product) {
             setSeverity("error")
             setAlertMessage("无此商品!!!请检查您输入的商品ID!!")
@@ -180,20 +183,20 @@ export const Civilian = ({civilianId}) => {
             setAlertMessage("金额不足!")
             setSnackBar(true)
         } else {
-            let ent_id="entrepreneur_"+productList.find((prod)=>{
-                return prod.productId===product_id;
+            let ent_id = "entrepreneur_" + productList.find((prod) => {
+                return prod.productId === product_id;
             }).entrepreneurId
-            let entrepreneur=JSON.parse(localStorage.getItem(ent_id))
+            let entrepreneur = JSON.parse(localStorage.getItem(ent_id))
             setSeverity("success")
             setAlertMessage("购买成功")
-            entrepreneur.money+=product.price
+            entrepreneur.money += product.price
             civil.ownedProducts.push({
                 productId: product_id,
                 roundsLeft: product.re_sellable + 1,
                 utility: product.utility
             })
             civil.money -= product.price
-            if (!product.isGreen&&!funcsActivated["Func13"]) {
+            if (!product.isGreen && !funcsActivated["Func13"]) {
                 carbon += 1
                 updateCarbon(carbon)
             }
@@ -202,9 +205,9 @@ export const Civilian = ({civilianId}) => {
             })
             updateProductList(productList)
             updateCivilInfo("CIVIL" + civilianId, civil)
-            localStorage.setItem("product_list",JSON.stringify(productList))
+            localStorage.setItem("product_list", JSON.stringify(productList))
             localStorage.setItem("civil_" + civilianId, JSON.stringify(civil))
-            localStorage.setItem(ent_id,JSON.stringify(entrepreneur))
+            localStorage.setItem(ent_id, JSON.stringify(entrepreneur))
             setSnackBar(true)
         }
     }
@@ -214,7 +217,7 @@ export const Civilian = ({civilianId}) => {
         let funcsActicated = JSON.parse(localStorage.getItem("civil_" + civilianId))
         let progressList = JSON.parse(localStorage.getItem("progress_list"))
         let currPolicy = JSON.parse(localStorage.getItem("current_policy"))
-        let carbon=JSON.parse(localStorage.getItem("carbon_amount_no_longer_increases"))?JSON.parse(localStorage.getItem("carbon_after_func13")):JSON.parse(localStorage.getItem("carbon_amount"))
+        let carbon = JSON.parse(localStorage.getItem("carbon_amount_no_longer_increases")) ? JSON.parse(localStorage.getItem("carbon_after_func13")) : JSON.parse(localStorage.getItem("carbon_amount"))
         if (!progressList.some((proj) => {
             return proj.eventId === projectId
         })) {
@@ -252,16 +255,17 @@ export const Civilian = ({civilianId}) => {
                         let func = functions[funcId]
                         funcsActivated[funcId] = true
                         localStorage.setItem("functions_activated", JSON.stringify(funcsActivated))
-                        let entrepreneurId=proj.corpName.at(4)
+                        let entrepreneurId = proj.corpName.at(4)
                         console.log(entrepreneurId)
-                        let entrepreneur=JSON.parse(localStorage.getItem("entrepreneur_"+entrepreneurId))
+                        let entrepreneur = JSON.parse(localStorage.getItem("entrepreneur_" + entrepreneurId))
                         console.log(database[projectId].last_payment_to_business)
-                        entrepreneur.money+=database[projectId].last_payment_to_business
-                        localStorage.setItem("entrepreneur_"+entrepreneurId,JSON.stringify(entrepreneur))
+                        entrepreneur.money += database[projectId].last_payment_to_business
+                        localStorage.setItem("entrepreneur_" + entrepreneurId, JSON.stringify(entrepreneur))
                         terminateProgress(proj.corpName, proj.eventId)
                         addBuffs(funcId, proj.corpName)
                         if (func.displayable) {
                             buffs.push(func.description)
+                            localStorage.setItem("buffs_n_debuffs", JSON.stringify(buffs))
                             updateBuffs(buffs)
                         }
                     }, 450)
@@ -271,8 +275,8 @@ export const Civilian = ({civilianId}) => {
         })
         localStorage.setItem("progress_list", JSON.stringify(progressList))
         localStorage.setItem("civil_" + civilianId, JSON.stringify(civil))
-        if(!database[projectId].isGreen&&!funcsActicated["Func13"]){
-            carbon+=1
+        if (!database[projectId].isGreen && !funcsActicated["Func13"]) {
+            carbon += 1
             updateCarbon(carbon)
         }
         updateProgressList(progressList)
