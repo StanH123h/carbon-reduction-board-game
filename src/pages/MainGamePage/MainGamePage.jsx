@@ -27,13 +27,13 @@ export const EndRoundFuncContext = React.createContext()
 export const UpdateCurrentPolicyContext = React.createContext()
 export const UpdateBidListContext = React.createContext()
 export const UpdateProgressListContext = React.createContext()
-export const UpdateHistoryEventsContext = React.createContext()
 export const UpdateProductListContext = React.createContext()
 export const UpdatePersonalInfoContext = React.createContext()
 export const UpdateBuffsContext = React.createContext()
 export const UpdateCarbonEmissionContext = React.createContext()
 export const TerminateProgressContext = React.createContext()
 export const MainGamePage = () => {
+    const customNames = JSON.parse(localStorage.getItem("custom_names"))
     const [civilInfo1, setCivilInfo1] = useState(JSON.parse(localStorage.getItem("civil_1")))
     const [civilInfo2, setCivilInfo2] = useState(JSON.parse(localStorage.getItem("civil_2")))
     const [civilInfo3, setCivilInfo3] = useState(JSON.parse(localStorage.getItem("civil_3")))
@@ -43,7 +43,6 @@ export const MainGamePage = () => {
     //上面是每个玩家的个人信息
     const [productList, setProductList] = useState(JSON.parse(localStorage.getItem("product_list")))
     const [progressList, setProgressList] = useState(JSON.parse(localStorage.getItem("progress_list")));
-    const [historyEvents, setHistoryEvents] = useState(JSON.parse(localStorage.getItem("history_events")))
     const [role, setRole] = useState(localStorage.getItem("role"))
     const [currentPolicy, setCurrentPolicy] = useState(JSON.parse(localStorage.getItem("current_policy")))
     const [roundStage, setRoundStage] = useState(localStorage.getItem("curr_round_stage"))
@@ -120,22 +119,22 @@ export const MainGamePage = () => {
         return (
             <div style={{display: "flex", justifyContent: "space-around"}}>
                 <div className={"government-info"}>
-                    <h4>政府</h4><br/>
+                    <h4>{customNames["government"]}</h4><br/>
                     已完成项目: <strong>{governmentInfo.finished_projects}</strong>
                 </div>
 
                 <div className={"ent1-info"}>
-                    <h4>企业1</h4><br/>
+                    <h4>{customNames["entrepreneur_1"]}</h4><br/>
                     资金: <strong>{entrepreneurInfo1.money}</strong>
                 </div>
                 <div className={"ent2-info"}>
-                    <h4>企业2</h4><br/>
+                    <h4>{customNames["entrepreneur_2"]}</h4><br/>
                     资金: <strong>{entrepreneurInfo2.money}</strong>
                 </div>
 
 
                 <div className={"civil1-info"}>
-                    <h4>公民1</h4><br/>
+                    <h4>{customNames["civil_1"]}</h4><br/>
                     资金: <strong>{civilInfo1.money}</strong><br/>
                     健康值: <strong>{civilInfo1.health}</strong><br/>
                     幸福值: <strong>{civilInfo1.utility}</strong><br/>
@@ -153,7 +152,7 @@ export const MainGamePage = () => {
                     </div>
                 </div>
                 <div className={"civil2-info"}>
-                    <h4>公民2</h4><br/>
+                    <h4>{customNames["civil_2"]}</h4><br/>
                     资金: <strong>{civilInfo2.money}</strong><br/>
                     健康值: <strong>{civilInfo2.health}</strong><br/>
                     幸福值: <strong>{civilInfo2.utility}</strong><br/>
@@ -171,7 +170,7 @@ export const MainGamePage = () => {
                     </div>
                 </div>
                 <div className={"civil3-info"}>
-                    <h4>公民3</h4><br/>
+                    <h4>{customNames["civil_3"]}</h4><br/>
                     资金: <strong>{civilInfo3.money}</strong><br/>
                     健康值: <strong>{civilInfo3.health}</strong><br/>
                     幸福值: <strong>{civilInfo3.utility}</strong><br/>
@@ -231,12 +230,7 @@ export const MainGamePage = () => {
                 <Item>
                     <TopTitleBar title={"历史操作(至多保存10条)"}/>
                     <List className={"history-list"} sx={{width: '100%', bgcolor: 'background.paper'}}>
-                        {historyEvents.map((value) => (<ListItem key={value}>
-                                <span style={{
-                                    color: "rgb(140,137,137)", marginRight: "1%"
-                                }}>{value.time}</span>
-                            {value.event}
-                        </ListItem>))}
+                        这个区域暂时留白
                     </List>
                 </Item>
             </Grid>
@@ -299,7 +293,7 @@ export const MainGamePage = () => {
                 <TopTitleBar title={"正在出售的商品"}/>
                 <List className={"progress-list"} sx={{width: '100%', bgcolor: 'background.paper'}}>
                     {productList.map((prod) => (<ListItem key={null}>
-                        <strong>{prod.productId}:</strong>{prod.productName}
+                        <strong>{prod.productId}:</strong>{prod.productName}&nbsp;&nbsp;&nbsp;{prod.entrepreneurIds.length}个
                     </ListItem>))}
                 </List>
             </Item>
@@ -320,38 +314,23 @@ export const MainGamePage = () => {
                     }}>
                         <UpdateCurrentPolicyContext.Provider value={(policy) => setCurrentPolicy(policy)}>
                             <UpdateProgressListContext.Provider value={(progList) => setProgressList(progList)}>
-                                <UpdateHistoryEventsContext.Provider value={(content) => {
-                                    const now = new Date()
-                                    let temp = historyEvents
-                                    if (temp.length === 10) {
-                                        temp.shift()
-                                    }
-                                    temp.push(
-                                        {
-                                            event: content,
-                                            time: now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0'),
-                                        }
-                                    )
-                                    setHistoryEvents(temp)
-                                }}>
-                                    <UpdateProductListContext.Provider value={(products) =>
-                                        setProductList(products)}>
-                                        <UpdatePersonalInfoContext.Provider value={operatePersonalInfo}>
-                                            <UpdateCarbonEmissionContext.Provider
-                                                value={(carbon) => setCarbonAmount(carbon)}>
-                                                <TerminateProgressContext.Provider
-                                                    value={(corpName, eventId) => terminateProgress(corpName, eventId)}>
-                                                    <UpdateBuffsContext.Provider
-                                                        value={(buffs) => setBuffsNDebuffs(buffs)}>
-                                                        {
-                                                            <IdentityCard currStage={roundStage}></IdentityCard>
-                                                        }
-                                                    </UpdateBuffsContext.Provider>
-                                                </TerminateProgressContext.Provider>
-                                            </UpdateCarbonEmissionContext.Provider>
-                                        </UpdatePersonalInfoContext.Provider>
-                                    </UpdateProductListContext.Provider>
-                                </UpdateHistoryEventsContext.Provider>
+                                <UpdateProductListContext.Provider value={(products) =>
+                                    setProductList(products)}>
+                                    <UpdatePersonalInfoContext.Provider value={operatePersonalInfo}>
+                                        <UpdateCarbonEmissionContext.Provider
+                                            value={(carbon) => setCarbonAmount(carbon)}>
+                                            <TerminateProgressContext.Provider
+                                                value={(corpName, eventId) => terminateProgress(corpName, eventId)}>
+                                                <UpdateBuffsContext.Provider
+                                                    value={(buffs) => setBuffsNDebuffs(buffs)}>
+                                                    {
+                                                        <IdentityCard currStage={roundStage}></IdentityCard>
+                                                    }
+                                                </UpdateBuffsContext.Provider>
+                                            </TerminateProgressContext.Provider>
+                                        </UpdateCarbonEmissionContext.Provider>
+                                    </UpdatePersonalInfoContext.Provider>
+                                </UpdateProductListContext.Provider>
                             </UpdateProgressListContext.Provider>
                         </UpdateCurrentPolicyContext.Provider>
                     </UpdateBidListContext.Provider>

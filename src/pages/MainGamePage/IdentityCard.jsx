@@ -3,6 +3,7 @@ import {Entrepreneur} from "../../roles/Entrepreneur/Entrepreneur";
 import {Civilian} from "../../roles/Civilian/Civilian";
 import Button from "@mui/material/Button";
 import * as React from "react";
+import {useContext, useState} from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,10 +15,10 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import {Alert, Snackbar, TextField} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
-import {useContext, useState} from "react";
-import {EndRoundFuncContext} from "./MainGamePage";
+import {EndRoundFuncContext, UpdatePersonalInfoContext} from "./MainGamePage";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import products from "../../data/products.json"
+
 export const IdentityCard = ({currStage}) => {
     const [open, setOpen] = useState(false);
     const [buyer, setBuyer] = useState("")
@@ -26,7 +27,9 @@ export const IdentityCard = ({currStage}) => {
     const [snackbar, setSnackBar] = useState(false)
     const [severity, setSeverity] = useState("success")
     const [alertMessage, setAlertMessage] = useState("")
+    const updatePersonalInfo = useContext(UpdatePersonalInfoContext)
     const endRound = useContext(EndRoundFuncContext)
+    const customNames = JSON.parse(localStorage.getItem("custom_names"))
     const closeSnackBar = () => {
         setSnackBar(false)
     }
@@ -50,38 +53,45 @@ export const IdentityCard = ({currStage}) => {
     const handleDeal = () => {
         let buyerInfo = JSON.parse(localStorage.getItem(buyer))
         let sellerInfo = JSON.parse(localStorage.getItem(seller))
+        const tranformTable = {
+            "civil_1": "CIVIL1",
+            "civil_2": "CIVIL2",
+            "civil_3": "CIVIL3"
+        }
         let product = sellerInfo.ownedProducts.find((prod) => {
-            return prod.productId === tradeProduct
+            return(prod.productId === tradeProduct) && (prod.roundsLeft === 1)
         })
-        let price = products[tradeProduct]?.money
+        console.log(seller)
+        let price = products[tradeProduct].price
         if (buyer === seller) {
             setSeverity("error")
             setAlertMessage("不能和自己交易!!!")
         } else if (!product) {
             setSeverity("warning")
-            setAlertMessage("卖家没有此产品")
-        }else if(product.roundsLeft===2){
-            setSeverity("error")
-            setAlertMessage("不能售出还能持续两轮的产品")
-        }else if(buyerInfo.money<Math.round(price*0.5)){
+            setAlertMessage("卖家没有此产品或者此产品持续轮数>1轮")
+        } else if (buyerInfo.money < Math.round(price * 0.5)) {
             setSeverity("warning")
             setAlertMessage("买家资金不足")
-        }
-        else {
-            sellerInfo.ownedProducts = sellerInfo.ownedProducts.filter((prod) => {
-                return prod.productId !== tradeProduct
-            })
+        } else if (!products[tradeProduct].re_sellable) {
+            setSeverity("warning")
+            setAlertMessage("此商品不可二次售卖")
+        } else {
+            const index = sellerInfo.ownedProducts.findIndex((prod) => (prod.productId === tradeProduct)&&(prod.roundsLeft===1));
+            sellerInfo.ownedProducts.splice(index, 1);
             buyerInfo.ownedProducts.push({
+                productName: product.productName,
                 productId: tradeProduct,
                 roundsLeft: product.roundsLeft,
-                utility: Math.round(product.utility*0.7)
+                utility: Math.round(product.utility * 0.7)
             })
-            sellerInfo.money+=Math.round(price*0.5)
-            buyerInfo.money-=Math.round(price*0.5)
+            sellerInfo.money += Math.round(price * 0.5)
+            buyerInfo.money -= Math.round(price * 0.5)
             localStorage.setItem(buyer, JSON.stringify(buyerInfo))
             localStorage.setItem(seller, JSON.stringify(sellerInfo))
+            updatePersonalInfo(tranformTable[buyer], buyerInfo)
+            updatePersonalInfo(tranformTable[seller], sellerInfo)
             setSeverity("success")
-            setAlertMessage("交易成功," + tradeProduct + "产品由" + buyer + "转到" + seller)
+            setAlertMessage("交易成功")
         }
         setOpen(false)
         setSnackBar(true)
@@ -157,9 +167,9 @@ export const IdentityCard = ({currStage}) => {
                                         }}
                                         onChange={handleBuyer}
                                     >
-                                        <MenuItem value="civil_1">civil_1</MenuItem>
-                                        <MenuItem value="civil_2">civil_2</MenuItem>
-                                        <MenuItem value="civil_3">civil_3</MenuItem>
+                                        <MenuItem value="civil_1">{customNames["civil_1"]}</MenuItem>
+                                        <MenuItem value="civil_2">{customNames["civil_2"]}</MenuItem>
+                                        <MenuItem value="civil_3">{customNames["civil_3"]}</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <TextField

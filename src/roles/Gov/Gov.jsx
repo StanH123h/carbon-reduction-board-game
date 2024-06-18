@@ -4,7 +4,6 @@ import {InfoCard} from "../InfoCard/InfoCard";
 import {
     UpdateBidListContext,
     UpdateCurrentPolicyContext,
-    UpdateHistoryEventsContext
 } from "../../pages/MainGamePage/MainGamePage";
 import projectFunction from "../../data/project_functions.json"
 import {Alert, Snackbar} from "@mui/material";
@@ -15,7 +14,6 @@ export const Gov = () => {
     const [alertMessage, setAlertMessage] = useState("")
     const updateProgressList = useContext(UpdateBidListContext)
     const updateCurrentPolicy = useContext(UpdateCurrentPolicyContext)
-    const updateHistoryEvents = useContext(UpdateHistoryEventsContext)
     const closeSnackBar = () => {
         setSnackBar(false)
     }
@@ -52,7 +50,6 @@ export const Gov = () => {
         localStorage.setItem("projects_started", JSON.stringify(projectsStarted))
         localStorage.setItem("gov_biddings", JSON.stringify(bidList))
         setSeverity("success")
-        updateHistoryEvents("政府开始了" + project_id + "项目的招标")
         setAlertMessage(project_id + "项目开始招标!")
         updateProgressList(bidList)
         setSnackBar(true)
@@ -77,7 +74,6 @@ export const Gov = () => {
         }))
         setSeverity("success")
         setAlertMessage(policy_id + "政策开始使用!")
-        updateHistoryEvents("政府制定了" + policy_id + "政策")
         updateCurrentPolicy(policy)
         setSnackBar(true)
     }

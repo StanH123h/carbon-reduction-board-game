@@ -1,4 +1,12 @@
 export const setUp = () => {
+    localStorage.setItem("custom_names",JSON.stringify({
+        "civil_1":"civil_1",
+        "civil_2":"civil_2",
+        "civil_3":"civil_3",
+        "entrepreneur_1":"entrepreneur_1",
+        "entrepreneur_2":"entrepreneur_2",
+        "government":"government"
+    }))
     for (let i = 1; i <= 3; i++) {
         localStorage.setItem("civil_" + i, JSON.stringify({
             name: "civil_" + i,
@@ -31,7 +39,6 @@ export const setUp = () => {
     localStorage.setItem("small_round", "0")//小回合
     localStorage.setItem("curr_round_stage", "public_spk")
     localStorage.setItem("round_broadcast_events", JSON.stringify({gov: [], entrepreneur: [], civil: []}))
-    localStorage.setItem("history_events", "[]")
     localStorage.setItem("role", "GOVERNMENT")
     localStorage.setItem("progress_list", "[]")
     localStorage.setItem("trans_page_data", JSON.stringify(
@@ -102,11 +109,71 @@ export const setUp = () => {
         "F07": false,
         "F08": false
     }))
-    localStorage.setItem("disaster_applied","false")//防止灾难重复减数值
-    localStorage.setItem("disaster","")//当前回合的灾难
+    localStorage.setItem("disaster_applied", "false")//防止灾难重复减数值
+    localStorage.setItem("disaster", "")//当前回合的灾难
+    localStorage.setItem("bought_products", JSON.stringify({
+        "L01": [],
+        "L02": [],
+        "L03": [],
+        "L04": [],
+        "L05": [],
+        "L06": [],
+        "L07": [],
+        "L08": [],
+        "L09": [],
+        "L10": [],
+        "L11": [],
+        "L12": [],
+        "L13": [],
+        "L14": [],
+        "L15": [],
+        "P01": [],
+        "P02": [],
+        "P03": [],
+        "P04": [],
+        "P05": [],
+        "P06": [],
+        "P07": [],
+        "P08": [],
+        "P09": [],
+        "P10": [],
+        "P11": [],
+        "P12": [],
+        "P13": []
+    }))//普通人每回合同种产品只能买一个
 }
 
 export const newBigRound = () => {
+    localStorage.setItem("bought_products", JSON.stringify({
+        "L01": [],
+        "L02": [],
+        "L03": [],
+        "L04": [],
+        "L05": [],
+        "L06": [],
+        "L07": [],
+        "L08": [],
+        "L09": [],
+        "L10": [],
+        "L11": [],
+        "L12": [],
+        "L13": [],
+        "L14": [],
+        "L15": [],
+        "P01": [],
+        "P02": [],
+        "P03": [],
+        "P04": [],
+        "P05": [],
+        "P06": [],
+        "P07": [],
+        "P08": [],
+        "P09": [],
+        "P10": [],
+        "P11": [],
+        "P12": [],
+        "P13": []
+    }))//普通人每回合同种产品只能买一个
     let bigRound = JSON.parse(localStorage.getItem("big_round"))
     let carbon = JSON.parse(localStorage.getItem("carbon_amount_no_longer_increases")) ? JSON.parse(localStorage.getItem("carbon_after_func13")) : JSON.parse(localStorage.getItem("carbon_amount"))
     let socialLvl = JSON.parse(localStorage.getItem("social_lvl"))
@@ -124,10 +191,10 @@ export const newBigRound = () => {
         carbon -= 5
         localStorage.setItem("carbon_amount", JSON.stringify(carbon))
     }
-    localStorage.setItem("disaster","")//当前回合的灾难
+    localStorage.setItem("disaster", "")//当前回合的灾难
     localStorage.setItem("big_round", JSON.stringify(bigRound + 1))
     localStorage.setItem("small_round", "0")
-    localStorage.setItem("disaster_applied","false")//防止灾难重复减数值
+    localStorage.setItem("disaster_applied", "false")//防止灾难重复减数值
     localStorage.setItem("curr_round_stage", "public_spk")
     localStorage.setItem("role", "GOVERNMENT")
     localStorage.setItem("trans_page_data", JSON.stringify(
@@ -137,24 +204,41 @@ export const newBigRound = () => {
             time: 150
         }
     ))
+    let civils = [civil1, civil2, civil3]
     let utilities = [civil1.utility, civil2.utility, civil3.utility]
     let businessMonies = [entrepreneur1.money, entrepreneur2.money]
     let healths = [civil1.health, civil2.health, civil3.health]
     switch (socialLvl) {
         case 1: {
-            if (utilities.every((util) => util > 400) && businessMonies.every((money) => money > 15000) && government.finished_projects >= 4 && healths.every((health) => health > 60)) {
+            console.log()
+            if (civils.reduce(function (acc, curr) {
+                if (curr.health > 0) {
+                    return acc + curr.utility
+                }
+                return acc
+            }, 0) > 1200 && businessMonies.every((money) => money > 15000) && government.finished_projects >= 4) {
                 localStorage.setItem("social_lvl", 2)
             }
             break
         }
         case 2: {
-            if (utilities.every((util) => util > 800) && businessMonies.every((money) => money > 27000) && government.finished_projects >= 7 && healths.every((health) => health > 60)) {
+            if (civils.reduce(function (acc, curr) {
+                if (curr.health > 0) {
+                    return acc + curr.utility
+                }
+                return acc
+            }, 0) > 2400 && businessMonies.every((money) => money > 27000) && government.finished_projects >= 7) {
                 localStorage.setItem("social_lvl", 3)
             }
             break
         }
         case 3: {
-            if (utilities.every((util) => util > 2000) && businessMonies.every((money) => money > 55000) && government.finished_projects >= 9 && healths.every((health) => health > 60)) {
+            if (civils.reduce(function (acc, curr) {
+                if (curr.health > 0) {
+                    return acc + curr.utility
+                }
+                return acc
+            }, 0) > 6000 && businessMonies.every((money) => money > 55000) && government.finished_projects >= 9) {
                 localStorage.setItem("social_lvl", 4)
             }
         }

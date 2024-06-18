@@ -1,4 +1,4 @@
-export const GameOverPage=()=>{
+export const GameFailedPage=()=>{
     localStorage.clear()
     return(
         <h1 style={{textAlign:"center",color:"orange"}}>

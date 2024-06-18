@@ -7,14 +7,16 @@ import {
 import createRoutes from "./route/Route";
 import {MainGamePage} from "./pages/MainGamePage/MainGamePage";
 import {TransitionPage} from "./pages/TransitionPage/TransitionPage";
-import {GameOverPage} from "./pages/GameOverPage/GameOverPage";
+import {GameFailedPage} from "./pages/GameOverPage/GameFailedPage";
+import {GameFinishedPage} from "./pages/GameOverPage/GameFinishedPage";
 
 function App() {
   const routesConfig = [
     { path: '/', component: <StartingPage/>,index:0 },
       {path: '/main',component: <MainGamePage/>,index:1},
       {path:'/transition',component: <TransitionPage/>,index:2},
-      {path: '/gameover',component: <GameOverPage/>,index:3}
+      {path: '/gameover',component: <GameFailedPage/>,index:3},
+      {path: '/gamefinish',component: <GameFinishedPage/>,index:4}
   ];
 
   return (

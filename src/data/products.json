@@ -6,7 +6,8 @@
     "producing_cost": 300,
     "re_sellable": true,
     "utility": 9,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L02": {
     "name": "汉麻衣",
@@ -15,7 +16,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 1
   },
   "L03": {
     "name": "手帕",
@@ -24,7 +26,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 1
   },
   "L04": {
     "name": "可堆肥手机壳",
@@ -33,7 +36,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L05": {
     "name": "钢吸管",
@@ -42,7 +46,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L06": {
     "name": "竹牙刷",
@@ -51,7 +56,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 1
   },
   "L07": {
     "name": "气泡水笼头",
@@ -60,7 +66,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 1
   },
   "L08": {
     "name": "丝瓜洗碗布",
@@ -69,7 +76,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L09": {
     "name": "再生纸",
@@ -78,7 +86,8 @@
     "producing_cost": 300,
     "re_sellable": false,
     "utility": 16,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L10": {
     "name": "Low_e玻璃（低辐射玻璃）",
@@ -87,7 +96,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 2
   },
   "L11": {
     "name": "竹子单车",
@@ -96,7 +106,8 @@
     "producing_cost": 350,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 3
   },
   "L12": {
     "name": "纸制罐装水",
@@ -105,7 +116,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 10,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 3
   },
   "L13": {
     "name": "茶籽粉",
@@ -114,7 +126,8 @@
     "producing_cost": 300,
     "re_sellable": false,
     "utility": 16,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 3
   },
   "L14": {
     "name": "野生鱼虾",
@@ -123,7 +136,8 @@
     "producing_cost": 400,
     "re_sellable": false,
     "utility": 20,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 3
   },
   "L15": {
     "name": "LED灯泡",
@@ -132,7 +146,8 @@
     "producing_cost": 300,
     "re_sellable": true,
     "utility": 8,
-    "isGreen": true
+    "isGreen": true,
+    "social_lvl": 3
   },
   "P01": {
     "name": "白炽灯泡",
@@ -141,7 +156,8 @@
     "producing_cost": 250,
     "re_sellable": true,
     "utility": 10,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   },
   "P02": {
     "name": "养殖鱼虾",
@@ -150,7 +166,8 @@
     "producing_cost": 400,
     "re_sellable": false,
     "utility": 32,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 3
   },
   "P03": {
     "name": "涤纶衣服",
@@ -159,7 +176,8 @@
     "producing_cost": 300,
     "re_sellable": true,
     "utility": 12,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 1
   },
   "P04": {
     "name": "牙膏",
@@ -168,7 +186,8 @@
     "producing_cost": 250,
     "re_sellable": false,
     "utility": 20,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 1
   },
   "P05": {
     "name": "护手霜",
@@ -177,7 +196,8 @@
     "producing_cost": 300,
     "re_sellable": false,
     "utility": 24,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 1
   },
   "P06": {
     "name": "喷墨打印机墨盒",
@@ -186,7 +206,8 @@
     "producing_cost": 300,
     "re_sellable": true,
     "utility": 12,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   },
   "P07": {
     "name": "防晒霜",
@@ -195,7 +216,8 @@
     "producing_cost": 300,
     "re_sellable": false,
     "utility": 24,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   },
   "P08": {
     "name": "一次性相机",
@@ -204,7 +226,8 @@
     "producing_cost": 350,
     "re_sellable": false,
     "utility": 28,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 3
   },
   "P09": {
     "name": "咖啡（产生咖啡渣）",
@@ -213,7 +236,8 @@
     "producing_cost": 300,
     "re_sellable": false,
     "utility": 20,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 1
   },
   "P10": {
     "name": "塑料牙刷（和竹牙刷对应）",
@@ -222,7 +246,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 15,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   },
   "P11": {
     "name": "塑料吸管",
@@ -231,7 +256,8 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 15,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   },
   "P12": {
     "name": "肥皂",
@@ -240,7 +266,8 @@
     "producing_cost": 250,
     "re_sellable": false,
     "utility": 20,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 3
   },
   "P13": {
     "name": "一次性矿泉水",
@@ -249,6 +276,7 @@
     "producing_cost": 200,
     "re_sellable": false,
     "utility": 15,
-    "isGreen": false
+    "isGreen": false,
+    "social_lvl": 2
   }
 }

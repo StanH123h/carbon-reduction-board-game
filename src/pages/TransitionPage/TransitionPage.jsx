@@ -54,6 +54,7 @@ export const TransitionPage = () => {
     const civil1_buyed_medicine = useRef(false)
     const civil2_buyed_medicine = useRef(false)
     const civil3_buyed_medicine = useRef(false)
+    let bigRound = JSON.parse(localStorage.getItem("big_round"))
     const closeSnackBar = () => {
         setSnackBar(false)
     }
@@ -63,8 +64,12 @@ export const TransitionPage = () => {
     const endSmallRound = () => {
         let [round, currRoundStage] = endRound()
         if (round === 5) {
-            newBigRound()
-            navigate("/transition")
+            if (bigRound === 10) {
+                navigate('/gamefinish')
+            } else {
+                newBigRound()
+                navigate("/transition")
+            }
         } else {
             navigate("/main")
         }
@@ -92,19 +97,22 @@ export const TransitionPage = () => {
             setSnackBar(true)
             localStorage.setItem(civilId, JSON.stringify(civil))
         }
+        let civil1 = JSON.parse(localStorage.getItem("civil_1"))
+        let civil2 = JSON.parse(localStorage.getItem("civil_2"))
+        let civil3 = JSON.parse(localStorage.getItem("civil_3"))
         return (
             <>
                 药的价格是5k,作用是恢复15点健康值
                 <div className={"buy-medicine"}>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_1")
-                    }} variant={"contained"} disabled={civil1_buyed_medicine.current}>玩家1买药</Button>
+                    }} variant={"contained"} disabled={civil1_buyed_medicine.current}>玩家1买药(玩家1目前健康值:{civil1.health})</Button>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_2")
-                    }} variant={"contained"} disabled={civil2_buyed_medicine.current}>玩家2买药</Button>
+                    }} variant={"contained"} disabled={civil2_buyed_medicine.current}>玩家2买药(玩家2目前健康值:{civil2.health})</Button>
                     <Button onClick={() => {
                         civil_buy_medicine("civil_3")
-                    }} variant={"contained"} disabled={civil3_buyed_medicine.current}>玩家3买药</Button>
+                    }} variant={"contained"} disabled={civil3_buyed_medicine.current}>玩家3买药(玩家3目前健康值:{civil3.health})</Button>
                 </div>
             </>
         )

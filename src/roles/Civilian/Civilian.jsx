@@ -178,20 +178,29 @@ export const Civilian = ({civilianId}) => {
             return
         }
         let civil = JSON.parse(localStorage.getItem("civil_" + civilianId))
+        let boughtProducts = JSON.parse(localStorage.getItem("bought_products"))
+        let productInList = productList.find((prod) => prod.productId === product_id)
         if (product.price > civil.money) {
             setSeverity("warning")
             setAlertMessage("金额不足!")
             setSnackBar(true)
+        } else if (boughtProducts[product_id].some((civil_id) => {
+            return civil_id === civilianId;
+        })) {
+            setSeverity("warning")
+            setAlertMessage("您本回合已经购买了本产品!")
+            setSnackBar(true)
         } else {
-            let ent_id = "entrepreneur_" + productList.find((prod) => {
-                return prod.productId === product_id;
-            }).entrepreneurId
+            const random = Math.ceil((Math.random() * (productInList.entrepreneurIds.length) - 1))
+            let ent_id = productInList.entrepreneurIds[random]
             let entrepreneur = JSON.parse(localStorage.getItem(ent_id))
+            boughtProducts[product_id].push(civilianId)
+            console.log(entrepreneur)
             setSeverity("success")
             setAlertMessage("购买成功")
             entrepreneur.money += product.price
             civil.ownedProducts.push({
-                productName:product.name,
+                productName: product.name,
                 productId: product_id,
                 roundsLeft: product.re_sellable + 1,
                 utility: product.utility
@@ -201,14 +210,24 @@ export const Civilian = ({civilianId}) => {
                 carbon += 1
                 updateCarbon(carbon)
             }
-            productList = productList.filter((prod) => {
-                return prod.productId !== product_id
-            })
+            if (productInList.entrepreneurIds.length === 1) {
+                productList = productList.filter((prod) => {
+                    return prod.productId !== product_id
+                })
+            } else {
+                productList = productList.map((prod) => {
+                    if (prod.productId === product_id) {
+                        prod.entrepreneurIds = prod.entrepreneurIds.slice(0, random).concat(prod.entrepreneurIds.slice(random + 1))
+                    }
+                    return prod
+                })
+            }
             updateProductList(productList)
             updateCivilInfo("CIVIL" + civilianId, civil)
             localStorage.setItem("product_list", JSON.stringify(productList))
             localStorage.setItem("civil_" + civilianId, JSON.stringify(civil))
             localStorage.setItem(ent_id, JSON.stringify(entrepreneur))
+            localStorage.setItem("bought_products", JSON.stringify(boughtProducts))
             setSnackBar(true)
         }
     }
@@ -239,6 +258,10 @@ export const Civilian = ({civilianId}) => {
         civil.money += 3400
         progressList = progressList.map((proj) => {
             if (proj.eventId === projectId) {
+                let entrepreneurId = "entrepreneur_" + proj.corpName.at(4)
+                let entrepreneur = JSON.parse(localStorage.getItem(entrepreneurId))
+                entrepreneur.money -= 3400
+                localStorage.setItem(entrepreneurId, JSON.stringify(entrepreneur))
                 if (currPolicy.id === "G03") {
                     if (proj.currentNum + 2 > proj.laborRequired) {
                         proj.currentNum += 1

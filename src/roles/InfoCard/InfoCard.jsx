@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,18 +7,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./InfoCard.scss"
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, TextField} from "@mui/material";
-import {useContext, useState} from "react";
 import products from "../../data/products.json"
 import {EndRoundFuncContext} from "../../pages/MainGamePage/MainGamePage";
 import projects from "../../data/projects.json"
 import policies from "../../data/policies.json"
-export const InfoCard = ({dataName, actionA, actionB, funcA, funcB, disableSnackBar,databaseA,databaseB}) => {
+
+export const InfoCard = ({dataName, actionA, actionB, funcA, funcB, disableSnackBar, databaseA, databaseB}) => {
     const data = JSON.parse(localStorage.getItem(dataName))
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = useState(null);
     const [popUp, setPopUp] = useState(false)
     const [option, setOption] = useState(null)
-    const endRound=useContext(EndRoundFuncContext)
+    const endRound = useContext(EndRoundFuncContext)
+    const customNames = JSON.parse(localStorage.getItem("custom_names"));
     const handleClickOpenA = () => {
         setOpen(true);
         setOption("A")
@@ -34,10 +36,10 @@ export const InfoCard = ({dataName, actionA, actionB, funcA, funcB, disableSnack
         setMessage(message)
         setPopUp(true)
     }
-    const database={
-        "products":products,
-        "projects":projects,
-        "policies":policies
+    const database = {
+        "products": products,
+        "projects": projects,
+        "policies": policies
     }
     return (
         <>
@@ -45,15 +47,17 @@ export const InfoCard = ({dataName, actionA, actionB, funcA, funcB, disableSnack
                 <img src={data.img} alt="image" className={"info-img"}/>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {data.name}
+                        {customNames[data.name]}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Your Identity is {data.identity}
                     </Typography>
                 </CardContent>
-                {data.identity==="GOV"?
-                <Button onClick={()=>{endRound()}}>结束回合</Button>
-                    :null
+                {data.identity === "GOV" ?
+                    <Button onClick={() => {
+                        endRound()
+                    }}>结束回合</Button>
+                    : null
                 }
                 <CardActions className={"info-actions"}>
                     <Button size="small" onClick={() => {
