@@ -48,6 +48,7 @@ const applyDisaster = (disaster) => {
     localStorage.setItem("entrepreneur_2", JSON.stringify(entrepreneur2))
 }
 export const TransitionPage = () => {
+    const [refresh,setRefresh]=useState(false)
     const [snackbar, setSnackBar] = useState(false)
     const [severity, setSeverity] = useState("success")
     const [alertMessage, setAlertMessage] = useState("")
@@ -73,6 +74,7 @@ export const TransitionPage = () => {
         } else {
             navigate("/main")
         }
+        setRefresh(!refresh)
     }
     const BuyMedicine = () => {
         const civil_buy_medicine = (civilId) => {
@@ -179,7 +181,7 @@ export const TransitionPage = () => {
             <br/>
             <div>{disasterAlert + currentDisaster}</div>
             <br/>
-            <Countdown time={time}/>
+            <Countdown time={time} refresh={refresh}/>
             <Button onClick={() => {
                 endSmallRound()
             }} variant={"contained"}>提前结束</Button>

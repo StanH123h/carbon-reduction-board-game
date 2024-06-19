@@ -1,0 +1,8 @@
+export const CarbonAmountPage=()=>{
+    const carbon=JSON.parse(localStorage.getItem("carbon_amount"))
+    return(
+        <h1>
+            当前的碳排放量是:{carbon}
+        </h1>
+    )
+}

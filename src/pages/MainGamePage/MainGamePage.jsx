@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -34,6 +34,7 @@ export const UpdateCarbonEmissionContext = React.createContext()
 export const TerminateProgressContext = React.createContext()
 export const MainGamePage = () => {
     const customNames = JSON.parse(localStorage.getItem("custom_names"))
+    const [refresh,setRefresh]=useState(false)
     const [civilInfo1, setCivilInfo1] = useState(JSON.parse(localStorage.getItem("civil_1")))
     const [civilInfo2, setCivilInfo2] = useState(JSON.parse(localStorage.getItem("civil_2")))
     const [civilInfo3, setCivilInfo3] = useState(JSON.parse(localStorage.getItem("civil_3")))
@@ -72,31 +73,34 @@ export const MainGamePage = () => {
             newBigRound()
             navigate("/transition")
         }
+        setRefresh(!refresh)
     }
     const encrypt = (num) => {
-        num += 1000;
-        num **= 2;
-        num -= 456;
-        num = num.toString();
-        let result = "%*";
-        const alphabet = "abcdefghijklmnopqrstuvwxyz";
-        for (let digit of num) {
+        // num += 1000;
+        // num **= 2;
+        // num -= 456;
+        // num = num.toString();
+        num*=3
+        let result = "";
+        const alphabet = "jihgfedcba";
+        for (let digit of num.toString()) {
             const index = parseInt(digit, 10);
             result += alphabet[index];
         }
         return result;
     };
     const decrypt = (str) => {
-        let temp_str = str.substring(2)
-        const alphabet = "abcdefghijklmnopqrstuvwxyz";
+        // let temp_str = str.substring(2)
+        const alphabet = "jihgfedcba";
         let result = 0
-        for (let letter of temp_str) {
+        for (let letter of str) {
             result *= 10
             result += alphabet.indexOf(letter)
         }
-        result += 456
-        result = Math.sqrt(result)
-        result -= 1000
+        result/=3
+        // result += 456
+        // result = Math.sqrt(result)
+        // result -= 1000
         return result
     }
     const encryptedCarbonAmount = useMemo(() => {
@@ -224,7 +228,7 @@ export const MainGamePage = () => {
             <PopUp isOpen={isOpen} corpName={popUpCorpName} eventId={popUpEventId} handleClose={() => {
                 setIsOpen(false)
             }}/>
-            <Countdown time={90}/>
+            <Countdown time={90} refresh={refresh}/>
             <span className={"first-row"}>
             <Grid xs={6} md={8}>
                 <Item>

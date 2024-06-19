@@ -50,7 +50,7 @@ export const InfoCard = ({dataName, actionA, actionB, funcA, funcB, disableSnack
                         {customNames[data.name]}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Your Identity is {data.identity}
+                        你的身份是 {data.identity}
                     </Typography>
                 </CardContent>
                 {data.identity === "GOV" ?

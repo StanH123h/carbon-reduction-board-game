@@ -3,7 +3,7 @@ import "./Countdown.scss"
 import React from 'react';
 import {Alert, Snackbar} from "@mui/material";
 
-export const Countdown=({time})=> {
+export const Countdown=({time,refresh})=> {
     const [timer, setTimer] = useState(time);
     const [timeout,setTimeOut]=useState(false);
     const [open,setOpen]=useState(false)
@@ -23,6 +23,9 @@ export const Countdown=({time})=> {
         // 清除定时器
         return () => clearInterval(intervalId);
     }, []); // 空依赖数组表示只在组件挂载和卸载时执行一次
+    useEffect(()=>{
+        setTimer(time)
+    },[refresh])
     useEffect(()=>{
         if(timeout) {
             setOpen(true)
