@@ -108,6 +108,7 @@ export const MainGamePage = () => {
     }, [carbonAmount])
     const terminateProgress = (corpName, eventId) => {
         setProgressList(progressList => {
+            console.log(progressList)
                 let temp = progressList.filter((proj) => {
                     return proj.eventId !== eventId
                 })
@@ -256,7 +257,7 @@ export const MainGamePage = () => {
                 </Item></Grid>
                 <Grid md={6}><Item>当前回合:{bigRound}</Item></Grid>
                 <Grid
-                    md={6}><Item>碳排放量:{encryptedCarbonAmount} 解密后:{decrypt(encryptedCarbonAmount)}</Item></Grid>
+                    md={6}><Item>碳排放量:{encryptedCarbonAmount} </Item></Grid>
                 <Grid md={6}><Item>当前政策:{currentPolicy.name}</Item></Grid>
             </Grid>
             <Grid xs={8} md={7}>
@@ -264,7 +265,7 @@ export const MainGamePage = () => {
                     <TopTitleBar title={"状态栏"}/>
                     <List className={"progress-list"} sx={{width: '100%', bgcolor: 'background.paper'}}>
                         {progressList.map((value) => (<ListItem key={value.eventId}>
-                            <ProgressTab eventId={value.eventId} corpName={value.corpName} aimNum={value.laborRequired}
+                            <ProgressTab eventId={value.eventId} corpName={value.displayName} aimNum={value.laborRequired}
                                          currentNum={value.currentNum}></ProgressTab>
                         </ListItem>))}
                     </List>

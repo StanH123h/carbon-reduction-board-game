@@ -1,72 +1,72 @@
 {
   "Z01": {
-    "civil_money": -3000,
+    "civil_money": -300,
     "business_money": -4000,
-    "health": -13,
-    "utility": -350,
+    "health": -9,
+    "utility": -70,
     "name": "磁暴"
   },
   "Z02": {
-    "civil_money": -3000,
+    "civil_money": -300,
     "business_money": -4000,
-    "health": -15,
-    "utility": -350,
+    "health": -10,
+    "utility": -70,
     "name": "极寒"
   },
   "Z03": {
-    "civil_money": -3500,
+    "civil_money": -350,
     "business_money": -4700,
-    "health": -16,
-    "utility": -260,
+    "health": -12,
+    "utility": -50,
     "name": "海藻过度生长"
   },
   "Z04": {
-    "civil_money": -4500,
+    "civil_money": -400,
     "business_money": -6000,
-    "health": -24,
-    "utility": -480,
+    "health": -15,
+    "utility": -90,
     "name": "森林火灾"
   },
   "Z05": {
-    "civil_money": -6000,
+    "civil_money": -600,
     "business_money": -7500,
-    "health": -30,
-    "utility": -700,
+    "health": -18,
+    "utility": -110,
     "name": "洪灾"
   },
   "Z06": {
-    "civil_money": -6000,
+    "civil_money": -600,
     "business_money": -7500,
-    "health": -27,
-    "utility": -720,
+    "health": -17,
+    "utility": 0,
     "name": "旱灾"
   },
   "Z07": {
-    "civil_money": -7500,
+    "civil_money": -750,
     "business_money": -9000,
-    "health": -27,
-    "utility": -600,
+    "health": -21,
+    "utility": -110,
     "name": "塌方"
   },
   "Z08": {
-    "civil_money": -8000,
+    "civil_money": -800,
     "business_money": -10000,
-    "health": -35,
-    "utility": -900,
+    "health": -22,
+    "utility": -180,
     "name" : "风暴"
   },
   "Z09": {
-    "civil_money": -9000,
-    "business_money": -12000,
-    "health": -40,
-    "utility": -1200,
+    "civil_money": -900,
+    "business_money": -10000,
+    "health": -22,
+    "utility": -230,
     "name": "地震"
   },
   "Z10": {
-    "civil_money": -13000,
+    "civil_money": -1300,
     "business_money": -15000,
-    "health": -50,
-    "utility": -1500,
+    "health": -28,
+    "utility": -250,
     "name": "全球疫情"
   },
   "ZZZ": {

@@ -145,7 +145,7 @@
     "wage_per_worker": 0.34,
     "first_payment_to_business": 20000,
     "last_payment_to_business": 10000,
-    "labor_required": 1,
+    "labor_required": 7,
     "function":"Func15",
     "isGreen": false
   },

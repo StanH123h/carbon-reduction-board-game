@@ -1,18 +1,18 @@
 export const setUp = () => {
-    localStorage.setItem("custom_names",JSON.stringify({
-        "civil_1":"civil_1",
-        "civil_2":"civil_2",
-        "civil_3":"civil_3",
-        "entrepreneur_1":"entrepreneur_1",
-        "entrepreneur_2":"entrepreneur_2",
-        "government":"government"
+    localStorage.setItem("custom_names", JSON.stringify({
+        "civil_1": "civil_1",
+        "civil_2": "civil_2",
+        "civil_3": "civil_3",
+        "entrepreneur_1": "entrepreneur_1",
+        "entrepreneur_2": "entrepreneur_2",
+        "government": "government"
     }))
     for (let i = 1; i <= 3; i++) {
         localStorage.setItem("civil_" + i, JSON.stringify({
             name: "civil_" + i,
             identity: "CIVILIAN",
             img: "/Civilian.png",
-            utility: 200,//幸福值
+            utility: 200,//幸福值200
             health: 70,//健康值
             money: 3000,
             ownedProducts: [],
@@ -23,7 +23,7 @@ export const setUp = () => {
             name: "entrepreneur_" + i,
             identity: "ENTREPRENEUR",
             img: "/entrepreneur.png",
-            money: 10000,
+            money: 10000,//10000
             projects_in_progress: 0,
             carbonEmitted: 0
         }))
@@ -32,11 +32,11 @@ export const setUp = () => {
         name: "government",
         identity: "GOV",
         img: "/government.png",
-        finished_projects: 0
+        finished_projects: 0//0
     }))//政府
     localStorage.setItem("social_lvl", "1")//社会等级
     localStorage.setItem("big_round", "1")//大回合
-    localStorage.setItem("small_round", "0")//小回合
+    localStorage.setItem("small_round", "0")//小回合,从0开始因为要当索引
     localStorage.setItem("curr_round_stage", "public_spk")
     localStorage.setItem("round_broadcast_events", JSON.stringify({gov: [], entrepreneur: [], civil: []}))
     localStorage.setItem("role", "GOVERNMENT")
@@ -110,7 +110,6 @@ export const setUp = () => {
         "F08": false
     }))
     localStorage.setItem("disaster_applied", "false")//防止灾难重复减数值
-    localStorage.setItem("disaster", "")//当前回合的灾难
     localStorage.setItem("bought_products", JSON.stringify({
         "L01": [],
         "L02": [],
@@ -141,9 +140,15 @@ export const setUp = () => {
         "P12": [],
         "P13": []
     }))//普通人每回合同种产品只能买一个
+    localStorage.setItem("civil_1_work_times","0")
+    localStorage.setItem("civil_2_work_times","0")
+    localStorage.setItem("civil_3_work_times","0")//这三个用于限制普通人每回合只能打3份工
 }
 
 export const newBigRound = () => {
+    localStorage.setItem("civil_1_work_times","0")
+    localStorage.setItem("civil_2_work_times","0")
+    localStorage.setItem("civil_3_work_times","0")//这三个用于限制普通人每回合只能打3份工
     localStorage.setItem("bought_products", JSON.stringify({
         "L01": [],
         "L02": [],
@@ -191,7 +196,6 @@ export const newBigRound = () => {
         carbon -= 5
         localStorage.setItem("carbon_amount", JSON.stringify(carbon))
     }
-    localStorage.setItem("disaster", "")//当前回合的灾难
     localStorage.setItem("big_round", JSON.stringify(bigRound + 1))
     localStorage.setItem("small_round", "0")
     localStorage.setItem("disaster_applied", "false")//防止灾难重复减数值
@@ -205,18 +209,31 @@ export const newBigRound = () => {
         }
     ))
     let civils = [civil1, civil2, civil3]
-    let utilities = [civil1.utility, civil2.utility, civil3.utility]
     let businessMonies = [entrepreneur1.money, entrepreneur2.money]
-    let healths = [civil1.health, civil2.health, civil3.health]
+    let productList = JSON.parse(localStorage.getItem("product_list"))
+    productList = productList.map(prod => {
+        prod.entrepreneurIds = prod.entrepreneurIds.filter(id => id.at(0) !== "1")
+        prod.entrepreneurIds = prod.entrepreneurIds.map(id => {
+            return "1" + id.substring(1)
+        })
+        return prod
+    })
+    productList=productList.filter(prod=>prod.entrepreneurIds.length!==0)
+    localStorage.setItem("product_list",JSON.stringify(productList))
     switch (socialLvl) {
         case 1: {
-            console.log()
+            console.log(civils.reduce(function (acc, curr) {
+                if (curr.health > 0) {
+                    return acc + curr.utility
+                }
+                return acc
+            }, 0))
             if (civils.reduce(function (acc, curr) {
                 if (curr.health > 0) {
                     return acc + curr.utility
                 }
                 return acc
-            }, 0) > 1200 && businessMonies.every((money) => money > 15000) && government.finished_projects >= 4) {
+            }, 0) >= 1200 && businessMonies.every((money) => money >= 15000) && government.finished_projects >= 4) {
                 localStorage.setItem("social_lvl", 2)
             }
             break
@@ -227,7 +244,7 @@ export const newBigRound = () => {
                     return acc + curr.utility
                 }
                 return acc
-            }, 0) > 2400 && businessMonies.every((money) => money > 27000) && government.finished_projects >= 7) {
+            }, 0) >= 2400 && businessMonies.every((money) => money >= 27000) && government.finished_projects >= 7) {
                 localStorage.setItem("social_lvl", 3)
             }
             break
@@ -238,7 +255,7 @@ export const newBigRound = () => {
                     return acc + curr.utility
                 }
                 return acc
-            }, 0) > 6000 && businessMonies.every((money) => money > 55000) && government.finished_projects >= 9) {
+            }, 0) >= 6000 && businessMonies.every((money) => money >= 55000) && government.finished_projects >= 9) {
                 localStorage.setItem("social_lvl", 4)
             }
         }

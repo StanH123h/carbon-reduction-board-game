@@ -4,6 +4,7 @@ import "./Civilian.scss"
 import {InfoCard} from "../InfoCard/InfoCard";
 import {Alert, Snackbar} from "@mui/material";
 import functions from "../../data/project_functions.json"
+import projects from "../../data/projects.json"
 import {
     TerminateProgressContext,
     UpdateBuffsContext,
@@ -18,7 +19,7 @@ export const Civilian = ({civilianId}) => {
     const [severity, setSeverity] = useState("success")
     const [alertMessage, setAlertMessage] = useState("")
     const updateProgressList = useContext(UpdateProgressListContext)
-    const updateCivilInfo = useContext(UpdatePersonalInfoContext)
+    const updatePersonalInfo = useContext(UpdatePersonalInfoContext)
     const terminateProgress = useContext(TerminateProgressContext)
     const updateBuffs = useContext(UpdateBuffsContext)
     const updateCarbon = useContext(UpdateCarbonEmissionContext)
@@ -58,9 +59,9 @@ export const Civilian = ({civilianId}) => {
         civil1.health += health
         civil2.health += health
         civil3.health += health
-        updateCivilInfo("CIVIL1", civil1)
-        updateCivilInfo("CIVIL2", civil2)
-        updateCivilInfo("CIVIL3", civil3)
+        updatePersonalInfo("CIVIL1", civil1)
+        updatePersonalInfo("CIVIL2", civil2)
+        updatePersonalInfo("CIVIL3", civil3)
         localStorage.setItem("civil_1", JSON.stringify(civil1))
         localStorage.setItem("civil_2", JSON.stringify(civil2))
         localStorage.setItem("civil_3", JSON.stringify(civil3))
@@ -171,7 +172,7 @@ export const Civilian = ({civilianId}) => {
         let productList = JSON.parse(localStorage.getItem("product_list"))
         let product = database[product_id]
         let funcsActivated = JSON.parse(localStorage.getItem("functions_activated"))
-        if (!product) {
+        if (!product||!productList.some(prod=>prod.productId===product_id)) {
             setSeverity("error")
             setAlertMessage("无此商品!!!请检查您输入的商品ID!!")
             setSnackBar(true)
@@ -192,7 +193,7 @@ export const Civilian = ({civilianId}) => {
             setSnackBar(true)
         } else {
             const random = Math.ceil((Math.random() * (productInList.entrepreneurIds.length) - 1))
-            let ent_id = productInList.entrepreneurIds[random]
+            let ent_id = productInList.entrepreneurIds[random].substring(1)
             let entrepreneur = JSON.parse(localStorage.getItem(ent_id))
             boughtProducts[product_id].push(civilianId)
             console.log(entrepreneur)
@@ -223,7 +224,8 @@ export const Civilian = ({civilianId}) => {
                 })
             }
             updateProductList(productList)
-            updateCivilInfo("CIVIL" + civilianId, civil)
+            updatePersonalInfo("CIVIL" + civilianId, civil)
+            updatePersonalInfo("ENTREPRENEUR"+ent_id.at(-1),entrepreneur)
             localStorage.setItem("product_list", JSON.stringify(productList))
             localStorage.setItem("civil_" + civilianId, JSON.stringify(civil))
             localStorage.setItem(ent_id, JSON.stringify(entrepreneur))
@@ -234,6 +236,7 @@ export const Civilian = ({civilianId}) => {
 
     const work = (projectId, database) => {
         let civil = JSON.parse(localStorage.getItem("civil_" + civilianId))
+        const workTimes=JSON.parse(localStorage.getItem("civil_"+civilianId+"_work_times"))
         let funcsActicated = JSON.parse(localStorage.getItem("civil_" + civilianId))
         let progressList = JSON.parse(localStorage.getItem("progress_list"))
         let currPolicy = JSON.parse(localStorage.getItem("current_policy"))
@@ -243,6 +246,12 @@ export const Civilian = ({civilianId}) => {
         })) {
             setSeverity("error")
             setAlertMessage("无此项目!!!请检查您输入的项目ID!!")
+            setSnackBar(true)
+            return
+        }
+        else if(workTimes===3){
+            setSeverity("warning")
+            setAlertMessage("您本回合已经达到打工上限(3份)")
             setSnackBar(true)
             return
         }
@@ -262,6 +271,7 @@ export const Civilian = ({civilianId}) => {
                 let entrepreneur = JSON.parse(localStorage.getItem(entrepreneurId))
                 entrepreneur.money -= 3400
                 localStorage.setItem(entrepreneurId, JSON.stringify(entrepreneur))
+                updatePersonalInfo("ENTREPRENEUR"+entrepreneurId.at(-1),entrepreneur)
                 if (currPolicy.id === "G03") {
                     if (proj.currentNum + 2 > proj.laborRequired) {
                         proj.currentNum += 1
@@ -271,8 +281,17 @@ export const Civilian = ({civilianId}) => {
                 } else {
                     proj.currentNum += 1
                 }
-                if (proj.currentNum === proj.laborRequired) {
+                if (proj.currentNum >= proj.laborRequired) {
                     setTimeout(() => {
+                        const entId = "entrepreneur_" + proj.corpName.at(4)
+                        let ent = JSON.parse(localStorage.getItem(entId))
+                        ent.money+=projects[projectId].last_payment_to_business
+                        localStorage.setItem(entId,JSON.stringify(ent))
+                        updatePersonalInfo("ENTREPRENEUR"+entId.at(-1),ent)
+                        let government=JSON.parse(localStorage.getItem("government"))
+                        government.finished_projects+=1
+                        localStorage.setItem("government",JSON.stringify(government))
+                        updatePersonalInfo("GOVERNMENT",government)
                         let buffs = JSON.parse(localStorage.getItem("buffs_n_debuffs"))
                         let funcsActivated = JSON.parse(localStorage.getItem("functions_activated"))
                         let funcId = database[projectId].function
@@ -299,12 +318,13 @@ export const Civilian = ({civilianId}) => {
         })
         localStorage.setItem("progress_list", JSON.stringify(progressList))
         localStorage.setItem("civil_" + civilianId, JSON.stringify(civil))
+        localStorage.setItem("civil_"+civilianId+"_work_times",JSON.stringify(workTimes+1))
         if (!database[projectId].isGreen && !funcsActicated["Func13"]) {
             carbon += 1
             updateCarbon(carbon)
         }
         updateProgressList(progressList)
-        updateCivilInfo("CIVIL" + civilianId, civil)
+        updatePersonalInfo("CIVIL" + civilianId, civil)
         setSeverity("success")
         setAlertMessage("打工成功")
         setSnackBar(true)

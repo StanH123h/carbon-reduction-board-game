@@ -199,9 +199,9 @@ export const IdentityCard = ({currStage}) => {
                                         }}
                                         value={seller}
                                     >
-                                        <MenuItem value="civil_1">civil_1</MenuItem>
-                                        <MenuItem value="civil_2">civil_2</MenuItem>
-                                        <MenuItem value="civil_3">civil_3</MenuItem>
+                                        <MenuItem value="civil_1">{customNames["civil_1"]}</MenuItem>
+                                        <MenuItem value="civil_2">{customNames["civil_2"]}</MenuItem>
+                                        <MenuItem value="civil_3">{customNames["civil_3"]}</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Box>

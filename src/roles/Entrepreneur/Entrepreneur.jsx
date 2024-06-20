@@ -23,6 +23,7 @@ export const Entrepreneur = ({ent_id}) => {
         setSnackBar(false)
     }
     const fight_for_bid = (project_id, database) => {
+        const customNames=JSON.parse(localStorage.getItem("custom_names"))
         let entrepreneur = JSON.parse(localStorage.getItem("entrepreneur_" + ent_id))
         let bid = database[project_id]
         let bidList = JSON.parse(localStorage.getItem("gov_biddings"))
@@ -50,28 +51,32 @@ export const Entrepreneur = ({ent_id}) => {
                 eventId: project_id,
                 corpName: "CORP" + ent_id,
                 laborRequired: 4,
-                currentNum: 0
+                currentNum: 0,
+                displayName:customNames["entrepreneur_"+ent_id]
             })
         } else if (project_id === "X10" && funcsActivated["Func3"]) {
             progressList.push({
                 eventId: project_id,
                 corpName: "CORP" + ent_id,
                 laborRequired: 5,
-                currentNum: 0
+                currentNum: 0,
+                displayName:customNames["entrepreneur_"+ent_id]
             })
         } else if (project_id === "X13" && funcsActivated["Func21"]) {
             progressList.push({
                 eventId: project_id,
                 corpName: "CORP" + ent_id,
                 laborRequired: 5,
-                currentNum: 0
+                currentNum: 0,
+                displayName:customNames["entrepreneur_"+ent_id]
             })
         } else {
             progressList.push({
                 eventId: project_id,
                 corpName: "CORP" + ent_id,
                 laborRequired: bid.labor_required,
-                currentNum: 0
+                currentNum: 0,
+                displayName:customNames["entrepreneur_"+ent_id]
             })
         }
         updateProgressList(progressList)
@@ -125,7 +130,7 @@ export const Entrepreneur = ({ent_id}) => {
             productList = productList.map((prod) => {
 
                 if (prod.productId === product_id) {
-                    prod.entrepreneurIds = [...prod.entrepreneurIds, "entrepreneur_" + ent_id]
+                    prod.entrepreneurIds = [...prod.entrepreneurIds, (product.re_sellable+1)+"entrepreneur_" + ent_id]
                 }
                 return prod
             })
@@ -133,7 +138,7 @@ export const Entrepreneur = ({ent_id}) => {
             productList.push({
                 productId: product_id,
                 productName: product.name,
-                entrepreneurIds: ["entrepreneur_" + ent_id]
+                entrepreneurIds: [(product.re_sellable+1)+"entrepreneur_" + ent_id]
             })
         }
         if ((!product.isGreen) && (!funcsActivated["Func13"])) {
