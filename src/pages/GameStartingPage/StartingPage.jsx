@@ -2,17 +2,18 @@ import {Button, Input} from "@mui/material";
 import "./StartingPage.scss";
 import {useNavigate} from 'react-router-dom';
 import {setUp} from "../initialSetups";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 export const StartingPage = () => {
-    let customNames = JSON.parse(localStorage.getItem("custom_names"))
     const civil1CustomName = useRef(null)
     const civil2CustomName = useRef(null)
     const civil3CustomName = useRef(null)
     const ent1CustomName = useRef(null)
     const ent2CustomName = useRef(null)
     const govCustomName = useRef(null)
-    setUp()
+    useEffect(() => {
+        setUp()
+    }, []);
     const navigate = useNavigate();
 
     return (
@@ -25,6 +26,7 @@ export const StartingPage = () => {
             <div>政府自定义名称:<Input placeholder={"government"} inputRef={govCustomName}/></div>
             <br/>
             <Button variant="contained" className={"button"} onClick={() => {
+                let customNames = JSON.parse(localStorage.getItem("custom_names"))
                 if (civil1CustomName.current && civil1CustomName.current.value) {
                     customNames["civil_1"] = civil1CustomName.current.value;
                 }
@@ -43,6 +45,7 @@ export const StartingPage = () => {
                 if (govCustomName.current && govCustomName.current.value) {
                     customNames["government"] = govCustomName.current.value;
                 }
+                console.log(customNames)
                 localStorage.setItem("custom_names",JSON.stringify(customNames))
                 navigate("/transition")
             }}>Start</Button>

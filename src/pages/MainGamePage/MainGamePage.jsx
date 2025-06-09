@@ -143,7 +143,6 @@ export const MainGamePage = () => {
                     资金: <strong>{civilInfo1.money}</strong><br/>
                     健康值: <strong>{civilInfo1.health}</strong><br/>
                     幸福值: <strong>{civilInfo1.utility}</strong><br/>
-
                     拥有的物品:
                     <div className={"civil-owned-products"}>
                         {civilInfo1.ownedProducts.map((prod) => {
@@ -257,7 +256,7 @@ export const MainGamePage = () => {
                 </Item></Grid>
                 <Grid md={6}><Item>当前回合:{bigRound}</Item></Grid>
                 <Grid
-                    md={6}><Item>碳排放量:{encryptedCarbonAmount} </Item></Grid>
+                    md={6}><Item>碳排放量:{encryptedCarbonAmount+"(已加密)"} </Item></Grid>
                 <Grid md={6}><Item>当前政策:{currentPolicy.name}</Item></Grid>
             </Grid>
             <Grid xs={8} md={7}>

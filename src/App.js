@@ -1,5 +1,5 @@
 import './App.css';
-import { StartingPage } from "./pages/StartingPage/StartingPage";
+import { StartingPage } from "./pages/GameStartingPage/StartingPage";
 import {
   BrowserRouter as Router,
   Routes
@@ -9,7 +9,6 @@ import {MainGamePage} from "./pages/MainGamePage/MainGamePage";
 import {TransitionPage} from "./pages/TransitionPage/TransitionPage";
 import {GameFailedPage} from "./pages/GameOverPage/GameFailedPage";
 import {GameFinishedPage} from "./pages/GameOverPage/GameFinishedPage";
-import {CarbonAmountPage} from "./pages/CarbonAmountPage.jsx.deprecated";
 
 function App() {
   const routesConfig = [
